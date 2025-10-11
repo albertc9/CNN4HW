@@ -1,0 +1,212 @@
+{
+  "model_summary": {
+    "total_params": 5211,
+    "input_shape": [
+      1,
+      4,
+      256,
+      1
+    ],
+    "num_layers": 5
+  },
+  "layers": [
+    {
+      "layer_index": 0,
+      "layer_name": "conv2d",
+      "layer_type": "Conv2D",
+      "output_shape": [
+        1,
+        1,
+        247,
+        20
+      ],
+      "output_stats": {
+        "min": 0.0,
+        "max": 0.183058962225914,
+        "mean": 0.010574284009635448,
+        "std": 0.02468031272292137
+      },
+      "input_shape": [
+        1,
+        4,
+        256,
+        1
+      ],
+      "input_stats": {
+        "min": -0.09227330317631924,
+        "max": 0.11459579326786257,
+        "mean": 0.00010323172009877869,
+        "std": 0.024656093882715415
+      },
+      "parameters": [
+        {
+          "name": "kernel",
+          "shape": [
+            4,
+            10,
+            1,
+            20
+          ],
+          "dtype": "float32",
+          "stats": {
+            "min": -0.6463627815246582,
+            "max": 0.6185327172279358,
+            "mean": -0.005122059024870396,
+            "std": 0.16408614814281464
+          }
+        },
+        {
+          "name": "bias",
+          "shape": [
+            20
+          ],
+          "dtype": "float32",
+          "stats": {
+            "min": -0.15111146867275238,
+            "max": 0.09829846024513245,
+            "mean": -0.015067989937961102,
+            "std": 0.04576196148991585
+          }
+        }
+      ],
+      "filters": 20,
+      "kernel_size": [
+        4,
+        10
+      ],
+      "activation": "relu"
+    },
+    {
+      "layer_index": 1,
+      "layer_name": "conv2d_1",
+      "layer_type": "Conv2D",
+      "output_shape": [
+        1,
+        1,
+        238,
+        10
+      ],
+      "output_stats": {
+        "min": 0.0,
+        "max": 0.30772486329078674,
+        "mean": 0.03357575088739395,
+        "std": 0.07225725799798965
+      },
+      "parameters": [
+        {
+          "name": "kernel",
+          "shape": [
+            1,
+            10,
+            20,
+            10
+          ],
+          "dtype": "float32",
+          "stats": {
+            "min": -0.5369555950164795,
+            "max": 0.6164372563362122,
+            "mean": 0.02152016945183277,
+            "std": 0.17420420050621033
+          }
+        },
+        {
+          "name": "bias",
+          "shape": [
+            10
+          ],
+          "dtype": "float32",
+          "stats": {
+            "min": -0.11318252235651016,
+            "max": 0.11780529469251633,
+            "mean": -0.0125946756452322,
+            "std": 0.059239063411951065
+          }
+        }
+      ],
+      "filters": 10,
+      "kernel_size": [
+        1,
+        10
+      ],
+      "activation": "relu"
+    },
+    {
+      "layer_index": 2,
+      "layer_name": "dropout",
+      "layer_type": "Dropout",
+      "output_shape": [
+        1,
+        1,
+        238,
+        10
+      ],
+      "output_stats": {
+        "min": 0.0,
+        "max": 0.30772486329078674,
+        "mean": 0.03357575088739395,
+        "std": 0.07225725799798965
+      },
+      "dropout_rate": 0.5
+    },
+    {
+      "layer_index": 3,
+      "layer_name": "flatten",
+      "layer_type": "Flatten",
+      "output_shape": [
+        1,
+        2380
+      ],
+      "output_stats": {
+        "min": 0.0,
+        "max": 0.30772486329078674,
+        "mean": 0.03357575088739395,
+        "std": 0.07225725799798965
+      }
+    },
+    {
+      "layer_index": 4,
+      "layer_name": "dense",
+      "layer_type": "Dense",
+      "output_shape": [
+        1,
+        1
+      ],
+      "output_stats": {
+        "min": 0.9999996423721313,
+        "max": 0.9999996423721313,
+        "mean": 0.9999996423721313,
+        "std": 0.0
+      },
+      "parameters": [
+        {
+          "name": "kernel",
+          "shape": [
+            2380,
+            1
+          ],
+          "dtype": "float32",
+          "stats": {
+            "min": -0.6595295667648315,
+            "max": 0.5614763498306274,
+            "mean": 0.02641628123819828,
+            "std": 0.15164612233638763
+          }
+        },
+        {
+          "name": "bias",
+          "shape": [
+            1
+          ],
+          "dtype": "float32",
+          "stats": {
+            "min": -0.029806513339281082,
+            "max": -0.029806513339281082,
+            "mean": -0.029806513339281082,
+            "std": 0.0
+          }
+        }
+      ],
+      "activation": "sigmoid"
+    }
+  ]
+}
