@@ -1,0 +1,83 @@
+Model + Data Notes for hls4ml/Vitis Export
+==========================================
+
+Context
+-------
+- Keras model file: 2D CNN (Sequential), Conv2D layers with channels_last.
+- Typical filename pattern: 10.07.25_15-31_100s_2D_CNN_model_2Layer.h5 (example).
+- Code paths (from refactor_checks.py and legacy snippets) show the pipeline evaluates on filtered data.
+
+What the code reveals
+---------------------
+1) Data source used for evaluation/training distribution
+   - Uses *Filtered* waveforms:
+     * Templates loaded via: filtered_Event2016_Stn*.npy
+     * Coincidence events loaded via: load_all_coincidence_traces(..., "Filtered_Traces")
+   - Conclusion: Your .npy export for inference should match the *Filtered_Traces* distribution
+     unless the training author explicitly confirms otherwise.
+
+2) Input layout and shape for the 2D CNN
+   - Layout: NHWC (channels_last)
+   - Single-sample shape: (4, 256, 1)
+     * 4 = polarization/sensor rows
+     * 256 = time samples (columns)
+     * 1 = channel dimension
+   - Batch shape: (N, 4, 256, 1)
+   - In pre- and post-scripts, 3D arrays are expanded with np.newaxis at the end to add the channel dim.
+
+3) 1D CNN special case (if_1D == True)
+   - If the pipeline uses a 1D CNN, code transposes to (N, 256, 4).
+   - Your current model is a 2D CNN and expects (N, 4, 256, 1).
+
+4) Datatypes and ranges
+   - Saved event examples often come as float64 arrays of shape (4, 256).
+   - Convert to float32 for hls4ml/Vitis (unless your training explicitly used float16).
+   - Keep the numeric scale consistent with training (no extra normalization unless it was part of training).
+
+5) Station and amp group hints from code
+   - 200s group typically includes stations: [14, 17, 19, 30].
+   - 100s group typically includes stations: [13, 15, 18].
+   - These inform which station files are valid for a given amp setting.
+
+Export rules (what your .npy should look like)
+----------------------------------------------
+- Final tensor for hls4ml (2D CNN): (N, 4, 256, 1), dtype=float32, channels_last.
+- When loading from single-event files shaped (4, 256) or (256, 4):
+  * Ensure shape is (4, 256); transpose if necessary; then add channel dim and (optionally) batch dim.
+- When loading from PKL:
+  * For each station entry, prefer "Filtered_Traces" when the model was trained/evaluated with filtered inputs.
+  * Fallback to "Traces" only if the training author confirms it was used.
+
+Sanity checks
+-------------
+- After export, verify:
+  * Shape: X.shape == (N, 4, 256, 1)
+  * dtype: X.dtype == np.float32
+  * Value range looks reasonable (e.g., not all zeros, not wildly out-of-range).
+- If you ever need to feed a 1D CNN: X_1d = X.squeeze(-1).transpose(0, 2, 1)  # -> (N, 256, 4)
+
+Command examples (using the provided script)
+--------------------------------------------
+1) Export from a PKL (Filtered_Traces) to a single batch X.npy:
+   python export_hls4ml_vitis.py \
+     --pkl /mnt/data/filtered_coinc.pkl \
+     --field filtered \
+     --out-dir /mnt/data/hls_vitis_export
+
+2) Export a folder of single-event .npy files (each ~ (4,256)) to one batch X.npy:
+   python export_hls4ml_vitis.py \
+     --npy-glob "/path/to/dir/*.npy" \
+     --out-dir /mnt/data/hls_vitis_export
+
+3) Optional SNR filter when exporting from PKL (keep SNR >= 4.0):
+   python export_hls4ml_vitis.py \
+     --pkl /mnt/data/filtered_coinc.pkl \
+     --field filtered \
+     --snr-min 4.0 \
+     --out-dir /mnt/data/hls_vitis_export
+
+Outputs
+-------
+- X_*.npy        : (N, 4, 256, 1) float32
+- X_*_meta.csv   : per-sample metadata (event/station/SNR/etc.)
+

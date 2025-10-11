@@ -1,0 +1,308 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Keras→hls4ml converter (no CLI).
+Edit the CONFIG below; run:  python convert_cnn_hls4ml.py
+
+This version is tailored for your 2D CNN (channels_last) with input (4,256,1)
+and the batch NPY produced earlier: X_pkl-filtered_float32_N_4_256_1.npy.
+
+- Robust sample loading:
+  * Accepts (N,4,256,1) batch → takes the first item
+  * Accepts single-event (4,256) or (4,256,1) → expands to (1,4,256,1)
+- Verifies model input shape is (None,4,256,1)
+
+Note:
+- hls4ml conversion requires TensorFlow/Keras and hls4ml installed in your env.
+- "do_build" runs HLS build; leave False if you only want C-sim + numeric check.
+"""
+
+import json, sys
+from pathlib import Path
+import numpy as np
+
+# ====== EDIT HERE: all your parameters in one place ======
+CONFIG = {
+    # Paths (update these two lines to your local paths)
+    "model": "/home/work1/Work/CNN_iCube_FPGA_b/models/10.07.25_15-31_100s_2D_CNN_model_2Layer.h5",
+    # You can point to the big batch NPY or to a single-event NPY
+    "sample": "/home/work1/Work/CNN_iCube_FPGA_b/out/X_pkl-filtered_float32_N_4_256_1.npy",
+
+    # HLS project
+    "outdir": "hls_cnn_2d_100s",
+
+    # HLS tool/flow
+    "part": "xcku5p-ffvb676-2-e",
+    "backend": "Vitis",          # "Vivado" or "Vitis"
+    "io": "io_stream",           # "io_stream" or "io_parallel"
+
+    # Quantization / scheduling
+    "precision": "ap_fixed<16,6>",
+    "reuse": 1,                  # Resource reuse factor (1 for highest Fmax potential)
+    "strip_dropout": True,       # Dropout stripped for HLS
+
+    # Build / test
+    "do_build": False,           # Set True if you want to run synth/export
+    "test_batch": 8,             # batch size used in real-batch numeric check
+}
+# =========================================================
+
+# ---- TensorFlow / Keras & hls4ml ----
+try:
+    import tensorflow as tf
+    from tensorflow import keras
+except Exception as e:
+    print("[FATAL] TensorFlow/Keras not available:", e)
+    sys.exit(1)
+
+try:
+    import hls4ml
+except Exception as e:
+    print("[FATAL] hls4ml not available:", e)
+    sys.exit(1)
+
+
+def load_keras_model(path, strip_dropout=True):
+    """Load model; convert Sequential→Functional to be extra safe for hls4ml."""
+    base = keras.models.load_model(path, compile=False)
+
+    # If it's already Functional, keep it
+    if isinstance(base, keras.Model) and base.__class__.__name__ == "Functional":
+        return base
+
+    # Rebuild as Functional for robustness
+    inputs = keras.Input(shape=base.input_shape[1:], name='input_1')
+    x = inputs
+    for idx, layer in enumerate(base.layers):
+        if strip_dropout and layer.__class__.__name__ == "Dropout":
+            continue
+        cfg = layer.get_config()
+        w = layer.get_weights()
+        cfg.pop('name', None)
+        cfg.pop('batch_input_shape', None)
+        cfg.pop('input_shape', None)
+        New = layer.__class__(**cfg)
+        x = New(x)
+        if w:
+            New.set_weights(w)
+    return keras.Model(inputs=inputs, outputs=x, name="converted_model")
+
+
+def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type="io_stream"):
+    """
+    500 MHz target:
+    - ClockPeriod = 2 ns
+    - Strategy = 'Latency'
+    - ReuseFactor = 1 (globally & per-layer)
+    - Larger Activation table_size to improve sigmoid LUT accuracy
+    - Only bump the final Dense 'result' precision to reduce output saturation error
+    """
+    cfg = {
+        'Model': {
+            'Precision': default_precision,
+            'ReuseFactor': int(reuse),
+            'Strategy': 'Latency',       # Prefer shortest critical path for high Fmax
+            'BramFactor': 4,
+            'PipelineStyle': 'dataflow',
+            'ClockPeriod': 2,            # 2 ns -> 500 MHz
+            'IOType': io_type
+        },
+        'LayerName': {},
+        'LayerType': {
+            'Activation': {
+                # Larger LUT improves sigmoid/tanh approximation (default ~1024)
+                'table_size': 2048
+            }
+        }
+    }
+
+    # Per-layer precision & ROM hints
+    for layer in model.layers:
+        name = getattr(layer, 'name', None)
+        cls = layer.__class__.__name__
+        if not name:
+            continue
+
+        if cls in ("Conv2D", "Dense"):
+            # Default per-layer precision
+            prec = {
+                'result': default_precision,
+                'weight': default_precision,
+                'bias':   default_precision
+            }
+            # Boost ONLY the final Dense output precision for better numeric behavior
+            if cls == "Dense" and name == "dense":
+                # Keep fractional 10 bits for fine resolution, add total bits for headroom
+                prec = {
+                    'result': 'ap_fixed<18,10>',  # output: finer/safer, small cost
+                    'weight': default_precision,
+                    'bias':   default_precision
+                }
+
+            cfg['LayerName'][name] = {
+                'Precision': prec,
+                'ReuseFactor': int(reuse),
+                'ram_style': 'block',
+                'rom_style': 'block',
+                'weight_rom': True,
+                'bias_rom': True
+            }
+
+        elif cls in ("Activation", "ReLU", "LeakyReLU", "PReLU"):
+            cfg['LayerName'][name] = {'Precision': default_precision}
+
+    return cfg
+
+
+def print_model_summary(model):
+    print("\n=== Keras Model Summary ===")
+    model.summary()
+    print("\n=== Layer Details (Conv2D/Dense) ===")
+    for layer in model.layers:
+        cls = layer.__class__.__name__
+        c = layer.get_config()
+        if cls == "Conv2D":
+            print(f"[Conv2D] {layer.name} filters={c.get('filters')} "
+                  f"kernel={c.get('kernel_size')} stride={c.get('strides')} "
+                  f"padding={c.get('padding')} activation={c.get('activation')} "
+                  f"data_format={c.get('data_format')}")
+        elif cls == "Dense":
+            print(f"[Dense ] {layer.name} units={c.get('units')} activation={c.get('activation')}")
+
+
+def coerce_to_batched_nhwc(x):
+    """
+    Accept:
+      - (N,4,256,1) -> keep
+      - (4,256,1)   -> add batch
+      - (4,256)     -> add channel + batch
+    """
+    x = np.array(x)
+    if x.ndim == 4 and x.shape[1:] == (4, 256, 1):
+        return x.astype(np.float32, copy=False)
+    if x.ndim == 3 and x.shape == (4, 256, 1):
+        return x[None, ...].astype(np.float32, copy=False)
+    if x.ndim == 2 and x.shape == (4, 256):
+        return x[..., None][None, ...].astype(np.float32, copy=False)
+    raise ValueError(f"Unsupported sample shape {x.shape}, expected (N,4,256,1) or (4,256,1) or (4,256)")
+
+
+def load_one_sample(npy_path):
+    """
+    Load either:
+      - a big batch NPY (N,4,256,1) -> take the first
+      - a single-event NPY (4,256) or (4,256,1)
+    """
+    p = Path(npy_path)
+    if not p.exists():
+        raise FileNotFoundError(f"Sample file not found: {p}")
+    arr = np.load(p, allow_pickle=True)
+    if arr.ndim == 4:
+        # batch -> use first
+        arr = arr[0]
+    return coerce_to_batched_nhwc(arr)
+
+
+def check_input_compat(model):
+    """Ensure the model expects (None,4,256,1) channels_last."""
+    ishape = model.input_shape
+    if isinstance(ishape, list):
+        ishape = ishape[0]
+    ok = (len(ishape) == 4 and ishape[1:] == (4, 256, 1))
+    if not ok:
+        raise SystemExit(f"[ERROR] Model input shape is {ishape}, expected (None,4,256,1). "
+                         "This script is tailored for 2D CNN channels_last. "
+                         "If your model is 1D, adjust accordingly.")
+    print(f"[OK] Model input shape verified: {ishape}")
+
+
+def quick_numeric_check(hls_model, keras_model, batch=8, sample_path=None):
+    # ---- Real-batch check first (if available & is a batch) ----
+    if sample_path:
+        try:
+            arr = np.load(sample_path, allow_pickle=True)
+            if arr.ndim == 4 and arr.shape[1:] == (4,256,1):
+                n = int(min(batch, arr.shape[0]))
+                xb = arr[:n].astype(np.float32, copy=False)
+                yk = keras_model.predict(xb, verbose=0)
+                yh = hls_model.predict(xb)
+                diff = np.abs(yk - yh).ravel()
+                print("\n>>> Real-batch check:")
+                print(f"N={n} | MAE={diff.mean():.6g} | MaxΔ={diff.max():.6g}")
+            else:
+                print("[INFO] sample_path is not a batch; skipping real-batch check.")
+        except Exception as e:
+            print(f"[WARN] Real-batch check skipped: {e}")
+
+    # ---- Keep single-sample check (first item) ----
+    if sample_path:
+        try:
+            xs = load_one_sample(sample_path)  # (1,4,256,1)
+            yk2 = keras_model.predict(xs, verbose=0)
+            yh2 = hls_model.predict(xs)
+            print("\n>>> Single sample check (@ sample path):")
+            print("Keras:", float(yk2.squeeze()), " | HLS:", float(yh2.squeeze()))
+        except Exception as e:
+            print(f"[WARN] Single-sample check skipped: {e}")
+
+    # ---- Random diagnostic (not representative of your data) ----
+    x = np.random.randn(batch, 4, 256, 1).astype(np.float32)
+    yk = keras_model.predict(x, verbose=0)
+    yh = hls_model.predict(x)
+    diff = np.abs(yk - yh).ravel()
+    print("\n>>> Random-input diagnostic (not representative):")
+    print(f"MAE={diff.mean():.6g} | MaxΔ={diff.max():.6g}")
+    print("Keras preds (first 5):", [float(v) for v in yk[:5].ravel()])
+    print("HLS   preds (first 5):", [float(v) for v in yh[:5].ravel()])
+
+
+def main(C):
+    print(f"[Info] TF version: {tf.__version__}")
+    print(f"[Info] hls4ml version: {getattr(hls4ml, '__version__', 'unknown')}")
+    print("[Info] Using config:", json.dumps(C, indent=2))
+
+    # Load model & sanity-check input
+    model = load_keras_model(C["model"], strip_dropout=C["strip_dropout"])
+    check_input_compat(model)
+    print_model_summary(model)
+
+    # Build HLS config
+    hls_cfg = make_hls_config(model,
+                              default_precision=C["precision"],
+                              reuse=C["reuse"],
+                              io_type=C["io"])
+    print("\n=== HLS Config (compact) ===")
+    print(json.dumps({
+        'Model': hls_cfg['Model'],
+        'LayerName': {k: v for k, v in hls_cfg['LayerName'].items()
+                      if any(x in v for x in ['Precision', 'ReuseFactor'])}
+    }, indent=2))
+
+    # Convert
+    print("\n[Step] Converting Keras model → HLS project ...")
+    hls_model = hls4ml.converters.convert_from_keras_model(
+        model,
+        hls_config=hls_cfg,
+        output_dir=C["outdir"],
+        part=C["part"],
+        io_type=C["io"],
+        backend=C["backend"]
+    )
+    print("[OK] Conversion done. Project at:", C["outdir"])
+
+    # Compile C-sim and check numerics
+    print("\n[Step] Compiling HLS C-simulation model ...")
+    hls_model.compile()
+    print("[OK] C-sim compile done.")
+    quick_numeric_check(hls_model, model, batch=C["test_batch"], sample_path=C["sample"])
+
+    # Optional build (synth/export)
+    if C["do_build"]:
+        print("\n[Step] Building (csim/synth/export) ... requires HLS tools in PATH")
+        hls_model.build(csim=True, synth=True, export=True)
+        print("[OK] Build finished. See reports in:", C["outdir"])
+
+
+if __name__ == "__main__":
+    main(CONFIG)
