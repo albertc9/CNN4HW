@@ -46,7 +46,7 @@ CONFIG = {
     # Quantization / scheduling
     # ap_fixed<18,8>: range [-128,128), precision ~0.001, safer for weights up to 0.66
     "precision": "ap_fixed<20,10>",
-    "reuse": 1,                  # 1 for highest Fmax potential
+    "reuse": 2,                  
     "strip_dropout": True,       # Dropout stripped for HLS
 
     # Build / test
@@ -119,10 +119,10 @@ def load_keras_model(path, strip_dropout=True):
 
 def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type="io_stream"):
     """
-    500 MHz target:
-    - ClockPeriod = 2 ns
+    200 MHz target:
+    - ClockPeriod = 5 ns
     - Strategy = 'Latency'
-    - ReuseFactor = 1 (globally & per-layer)
+    - ReuseFactor = 2 (globally & per-layer)
     - Larger Activation table_size to improve sigmoid LUT accuracy
     - Only bump the final Dense 'result' precision to reduce output saturation error
     """
@@ -133,7 +133,7 @@ def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type=
             'Strategy': 'Latency',       # Prefer shortest critical path for high Fmax
             'BramFactor': 4,
             'PipelineStyle': 'dataflow',
-            'ClockPeriod': 2,            # 2 ns -> 500 MHz
+            'ClockPeriod': 5,            # 5 ns -> 200 MHz
             'IOType': io_type
         },
         'LayerName': {},
@@ -180,10 +180,8 @@ def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type=
             cfg['LayerName'][name] = {
                 'Precision': prec,
                 'ReuseFactor': int(reuse),
-                'ram_style': 'block',
-                'rom_style': 'block',
-                'weight_rom': True,
-                'bias_rom': True
+                # Use embedded ROM instead of external BRAM interface
+                'Strategy': 'Resource',  # Use LUTs/distributed RAM for weights
             }
 
         elif cls in ("Activation", "ReLU", "LeakyReLU", "PReLU"):

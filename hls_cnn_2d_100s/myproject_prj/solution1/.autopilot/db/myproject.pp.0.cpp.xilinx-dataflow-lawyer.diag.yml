@@ -1,8 +1,0 @@
----
-MainSourceFile:  /home/work1/.local/share/Trash/files/hls_cnn_2d_100s.11/myproject_prj/solution1/.autopilot/db/myproject.pp.0.cpp
-Diagnostics:     
-  - DiagnosticName:  clang-diagnostic-warning
-    Message:         '[xlx-df-check-10] Either use an argument of the function or declare the variable inside the dataflow loop body'
-    FileOffset:      '60:71'
-    FilePath:        firmware/myproject.cpp
-...
