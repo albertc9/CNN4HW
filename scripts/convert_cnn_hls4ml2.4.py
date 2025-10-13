@@ -131,7 +131,7 @@ def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type=
             'Precision': default_precision,
             'ReuseFactor': int(reuse),
             'Strategy': 'Latency',       # Prefer shortest critical path for high Fmax
-            'BramFactor': 1000000,
+            'BramFactor': 4,
             'PipelineStyle': 'dataflow',
             'ClockPeriod': 2,            # 2 ns -> 500 MHz
             'IOType': io_type
@@ -518,11 +518,9 @@ def main(C):
             model,
             hls_config=hls_cfg,
             output_dir=C["outdir"],
-            project_name=C["outdir"],  # Use output directory name as project name
             part=C["part"],
             io_type=C["io"],
-            backend=C["backend"],
-            clock_period=hls_cfg['Model']['ClockPeriod']
+            backend=C["backend"]
         )
         print("[OK] Conversion done. Project at:", C["outdir"])
 
