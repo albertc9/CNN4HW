@@ -1,0 +1,168 @@
+
+
+================================================================
+== Vitis HLS Report for 'dense_array_ap_fixed_10u_array_ap_fixed_24_10_5_3_0_1u_config7_s'
+================================================================
+* Date:           Fri Oct 10 23:12:48 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        myproject_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: kintexuplus
+* Target device:  xcku5p-ffvb676-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  4.287 ns|     0.62 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+------+------+---------+
+    |  Latency (cycles) |  Latency (absolute) |   Interval  | Pipeline|
+    |   min   |   max   |    min   |    max   |  min |  max |   Type  |
+    +---------+---------+----------+----------+------+------+---------+
+    |     1436|     1436|  7.180 us|  7.180 us|  1436|  1436|       no|
+    +---------+---------+----------+----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+---------+----------+----------+------+------+---------+
+        |                                                                                    |                                                                        |  Latency (cycles) |  Latency (absolute) |   Interval  | Pipeline|
+        |                                      Instance                                      |                                 Module                                 |   min   |   max   |    min   |    max   |  min |  max |   Type  |
+        +------------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+---------+----------+----------+------+------+---------+
+        |grp_dense_array_array_ap_fixed_24_10_5_3_0_1u_config7_Pipeline_DataPrepare_fu_9555  |dense_array_array_ap_fixed_24_10_5_3_0_1u_config7_Pipeline_DataPrepare  |      240|      240|  1.200 us|  1.200 us|   240|   240|       no|
+        |grp_dense_latency_wrapper_ap_fixed_ap_fixed_24_10_5_3_0_config7_s_fu_11941          |dense_latency_wrapper_ap_fixed_ap_fixed_24_10_5_3_0_config7_s           |     1192|     1192|  5.960 us|  5.960 us|  1192|  1192|       no|
+        +------------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+---------+----------+----------+------+------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|       2|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|  4760|   84682|   98713|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       -|      67|    -|
+|Register         |        -|     -|      33|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|  4760|   84715|   98782|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |      960|  1824|  433920|  216960|   64|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|   260|      19|      45|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+------+-------+-------+-----+
+    |                                      Instance                                      |                                 Module                                 | BRAM_18K|  DSP |   FF  |  LUT  | URAM|
+    +------------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+------+-------+-------+-----+
+    |grp_dense_array_array_ap_fixed_24_10_5_3_0_1u_config7_Pipeline_DataPrepare_fu_9555  |dense_array_array_ap_fixed_24_10_5_3_0_1u_config7_Pipeline_DataPrepare  |        0|     0|  47619|     79|    0|
+    |grp_dense_latency_wrapper_ap_fixed_ap_fixed_24_10_5_3_0_config7_s_fu_11941          |dense_latency_wrapper_ap_fixed_ap_fixed_24_10_5_3_0_config7_s           |        0|  4760|  37063|  98634|    0|
+    +------------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+------+-------+-------+-----+
+    |Total                                                                               |                                                                        |        0|  4760|  84682|  98713|    0|
+    +------------------------------------------------------------------------------------+------------------------------------------------------------------------+---------+------+-------+-------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------+----+-----------+-----+-----------+
+    |       Name       | LUT| Input Size| Bits| Total Bits|
+    +------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm         |  31|          6|    1|          6|
+    |ap_done           |   9|          2|    1|          2|
+    |layer5_out_read   |   9|          2|    1|          2|
+    |layer7_out_blk_n  |   9|          2|    1|          2|
+    |real_start        |   9|          2|    1|          2|
+    +------------------+----+-----------+-----+-----------+
+    |Total             |  67|         14|    5|         14|
+    +------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                               Name                                              | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                                        |   5|   0|    5|          0|
+    |ap_done_reg                                                                                      |   1|   0|    1|          0|
+    |grp_dense_array_array_ap_fixed_24_10_5_3_0_1u_config7_Pipeline_DataPrepare_fu_9555_ap_start_reg  |   1|   0|    1|          0|
+    |grp_dense_latency_wrapper_ap_fixed_ap_fixed_24_10_5_3_0_config7_s_fu_11941_ap_start_reg          |   1|   0|    1|          0|
+    |res_reg_45267                                                                                    |  24|   0|   24|          0|
+    |start_once_reg                                                                                   |   1|   0|    1|          0|
+    +-------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                            |  33|   0|   33|          0|
+    +-------------------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |                            Source Object                           |    C Type    |
++---------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|start_full_n               |   in|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|ap_continue                |   in|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|start_out                  |  out|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|start_write                |  out|    1|  ap_ctrl_hs|  dense<array<ap_fixed,10u>,array<ap_fixed<24,10,5,3,0>,1u>,config7>|  return value|
+|layer5_out_dout            |   in|  200|     ap_fifo|                                                          layer5_out|       pointer|
+|layer5_out_num_data_valid  |   in|    9|     ap_fifo|                                                          layer5_out|       pointer|
+|layer5_out_fifo_cap        |   in|    9|     ap_fifo|                                                          layer5_out|       pointer|
+|layer5_out_empty_n         |   in|    1|     ap_fifo|                                                          layer5_out|       pointer|
+|layer5_out_read            |  out|    1|     ap_fifo|                                                          layer5_out|       pointer|
+|layer7_out_din             |  out|   24|     ap_fifo|                                                          layer7_out|       pointer|
+|layer7_out_num_data_valid  |   in|    2|     ap_fifo|                                                          layer7_out|       pointer|
+|layer7_out_fifo_cap        |   in|    2|     ap_fifo|                                                          layer7_out|       pointer|
+|layer7_out_full_n          |   in|    1|     ap_fifo|                                                          layer7_out|       pointer|
+|layer7_out_write           |  out|    1|     ap_fifo|                                                          layer7_out|       pointer|
+|w7_Addr_A                  |  out|   32|        bram|                                                                  w7|         array|
+|w7_EN_A                    |  out|    1|        bram|                                                                  w7|         array|
+|w7_WEN_A                   |  out|    4|        bram|                                                                  w7|         array|
+|w7_Din_A                   |  out|   32|        bram|                                                                  w7|         array|
+|w7_Dout_A                  |   in|   32|        bram|                                                                  w7|         array|
+|w7_Addr_B                  |  out|   32|        bram|                                                                  w7|         array|
+|w7_EN_B                    |  out|    1|        bram|                                                                  w7|         array|
+|w7_WEN_B                   |  out|    4|        bram|                                                                  w7|         array|
+|w7_Din_B                   |  out|   32|        bram|                                                                  w7|         array|
+|w7_Dout_B                  |   in|   32|        bram|                                                                  w7|         array|
++---------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+
