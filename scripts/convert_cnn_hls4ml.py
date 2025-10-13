@@ -131,7 +131,7 @@ def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type=
             'Precision': default_precision,
             'ReuseFactor': int(reuse),
             'Strategy': 'Latency',       # Prefer shortest critical path for high Fmax
-            'BramFactor': 1000000,
+            'BramFactor': 8000,
             'PipelineStyle': 'dataflow',
             'ClockPeriod': 2,            # 2 ns -> 500 MHz
             'IOType': io_type
@@ -525,6 +525,15 @@ def main(C):
             clock_period=hls_cfg['Model']['ClockPeriod']
         )
         print("[OK] Conversion done. Project at:", C["outdir"])
+
+        # Fix backend in project.tcl (hls4ml hardcodes it to "vivado")
+        project_tcl = Path(C["outdir"]) / "project.tcl"
+        if project_tcl.exists():
+            content = project_tcl.read_text()
+            # Replace hardcoded backend with user-specified one
+            content = content.replace('set backend "vivado"', f'set backend "{C["backend"].lower()}"')
+            project_tcl.write_text(content)
+            print(f"[OK] Updated project.tcl backend to: {C['backend']}")
 
         # Compile C-sim and quick checks
         print("\n[Step] Compiling HLS C-simulation model ...")
