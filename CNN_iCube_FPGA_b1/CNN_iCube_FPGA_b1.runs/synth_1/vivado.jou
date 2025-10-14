@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Tue Oct 14 15:35:03 2025
+# Process ID: 1420595
+# Current directory: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.runs/synth_1
+# Command line: vivado -log CNN4HW_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source CNN4HW_TOP.tcl
+# Log file: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.runs/synth_1/CNN4HW_TOP.vds
+# Journal file: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.runs/synth_1/vivado.jou
+# Running On: dhcp-172-31-232-100.mobile.uci.edu, OS: Linux, CPU Frequency: 800.307 MHz, CPU Physical cores: 24, Host memory: 16427 MB
+#-----------------------------------------------------------
+source CNN4HW_TOP.tcl -notrace
