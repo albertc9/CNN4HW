@@ -9,7 +9,7 @@
 #ifndef __SYNTHESIS__
 dense_bias_t b7[1];
 #else
-dense_bias_t b7[1] = {-0.0298065133};
+dense_bias_t b7[1] = {-0.02980651333928};
 #endif
 
 #endif
