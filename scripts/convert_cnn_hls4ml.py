@@ -45,8 +45,8 @@ CONFIG = {
 
     # Quantization / scheduling
     # ap_fixed<18,8>: range [-128,128), precision ~0.001, safer for weights up to 0.66
-    "precision": "ap_fixed<20,10>",
-    "reuse": 2,                  
+    "precision": "ap_fixed<16,2>",
+    "reuse": 8,                  
     "strip_dropout": True,       # Dropout stripped for HLS
 
     # Build / test
@@ -117,12 +117,12 @@ def load_keras_model(path, strip_dropout=True):
     return keras.Model(inputs=inputs, outputs=x, name="converted_model")
 
 
-def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type="io_stream"):
+def make_hls_config(model, default_precision="ap_fixed<8,2>", reuse=1, io_type="io_stream"):
     """
     200 MHz target:
-    - ClockPeriod = 2 ns
+    - ClockPeriod = 4 ns
     - Strategy = 'Latency'
-    - ReuseFactor = 2 (globally & per-layer)
+    - ReuseFactor = 8 (globally & per-layer)
     - Larger Activation table_size to improve sigmoid LUT accuracy
     - Only bump the final Dense 'result' precision to reduce output saturation error
     """
@@ -133,7 +133,7 @@ def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type=
             'Strategy': 'Latency',       # Prefer shortest critical path for high Fmax
             'BramFactor': 8000,
             'PipelineStyle': 'dataflow',
-            'ClockPeriod': 2,            # 2 ns -> 500 MHz
+            'ClockPeriod': 4,            # 4 ns -> 250 MHz
             'IOType': io_type
         },
         'LayerName': {},
@@ -163,18 +163,17 @@ def make_hls_config(model, default_precision="ap_fixed<16,6>", reuse=1, io_type=
             # Optimize Conv2D output precision (ReLU activation -> output range [0, ~0.3])
             if cls == "Conv2D":
                 # Conv2D MAC before ReLU: use generous precision to avoid any overflow
-                prec['accum'] = 'ap_fixed<24,10>'  # MAC accumulator [-512,512)
-                prec['result'] = 'ap_fixed<20,10>' # Pre-ReLU result
+                prec['accum'] = 'ap_fixed<24,4>'  # MAC accumulator [-512,512)
+                prec['result'] = 'ap_fixed<14,2>' # Pre-ReLU result
 
             # Optimize final Dense output precision
             if cls == "Dense" and name == "dense":
                 # Dense MAC: 2380 inputs × 0.31 × 0.66 ≈ 487 → use ap_fixed<28,12>
-                # 增加 result 精度以改善 sigmoid 中间区域 [0.3-0.6] 的误差
                 prec = {
-                    'result': 'ap_fixed<24,10>',   # Sigmoid output (更多位宽)
+                    'result': 'ap_fixed<12,6>',   # Sigmoid output
                     'weight': default_precision,
                     'bias':   default_precision,
-                    'accum': 'ap_fixed<28,12>'     # Extra headroom for MAC
+                    'accum': 'ap_fixed<26,10>'     # Extra headroom for MAC
                 }
 
             cfg['LayerName'][name] = {

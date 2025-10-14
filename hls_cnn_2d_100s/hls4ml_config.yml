@@ -1,48 +1,48 @@
 Backend: Vitis
-ClockPeriod: 2
+ClockPeriod: 4
 HLSConfig:
   LayerName:
     conv2d:
       Precision:
-        accum: ap_fixed<24,10>
-        bias: ap_fixed<20,10>
-        result: ap_fixed<20,10>
-        weight: ap_fixed<20,10>
-      ReuseFactor: 2
+        accum: ap_fixed<24,4>
+        bias: ap_fixed<16,2>
+        result: ap_fixed<14,2>
+        weight: ap_fixed<16,2>
+      ReuseFactor: 8
       Strategy: Latency
     conv2d_1:
       Precision:
-        accum: ap_fixed<24,10>
-        bias: ap_fixed<20,10>
-        result: ap_fixed<20,10>
-        weight: ap_fixed<20,10>
-      ReuseFactor: 2
+        accum: ap_fixed<24,4>
+        bias: ap_fixed<16,2>
+        result: ap_fixed<14,2>
+        weight: ap_fixed<16,2>
+      ReuseFactor: 8
       Strategy: Latency
     dense:
       Precision:
-        accum: ap_fixed<28,12>
-        bias: ap_fixed<20,10>
-        result: ap_fixed<24,10>
-        weight: ap_fixed<20,10>
-      ReuseFactor: 2
+        accum: ap_fixed<26,10>
+        bias: ap_fixed<16,2>
+        result: ap_fixed<12,6>
+        weight: ap_fixed<16,2>
+      ReuseFactor: 8
       Strategy: Latency
   LayerType:
     Activation:
       table_size: 1024
   Model:
     BramFactor: 8000
-    ClockPeriod: 2
+    ClockPeriod: 4
     IOType: io_stream
     PipelineStyle: dataflow
-    Precision: ap_fixed<20,10>
-    ReuseFactor: 2
+    Precision: ap_fixed<16,2>
+    ReuseFactor: 8
     Strategy: Latency
 IOType: io_stream
 InputData: null
 KerasModel: !!python/object/apply:tf_keras.src.saving.pickle_utils.deserialize_model_from_bytecode
 - !!binary |
-  UEsDBBQAAAAAAAAAIQCk0vprQAAAAEAAAAANAAAAbWV0YWRhdGEuanNvbnsia2VyYXNfdmVyc2lv
-  biI6ICIyLjIwLjEiLCAiZGF0ZV9zYXZlZCI6ICIyMDI1LTEwLTEzQDE0OjU3OjA5In1QSwMEFAAA
+  UEsDBBQAAAAAAAAAIQDk1G4qQAAAAEAAAAANAAAAbWV0YWRhdGEuanNvbnsia2VyYXNfdmVyc2lv
+  biI6ICIyLjIwLjEiLCAiZGF0ZV9zYXZlZCI6ICIyMDI1LTEwLTEzQDE4OjA2OjU1In1QSwMEFAAA
   AAAAAAAhALpWddyUDAAAlAwAAAsAAABjb25maWcuanNvbnsibW9kdWxlIjogInRmX2tlcmFzLnNy
   Yy5lbmdpbmUuZnVuY3Rpb25hbCIsICJjbGFzc19uYW1lIjogIkZ1bmN0aW9uYWwiLCAiY29uZmln
   IjogeyJuYW1lIjogImNvbnZlcnRlZF9tb2RlbCIsICJ0cmFpbmFibGUiOiB0cnVlLCAibGF5ZXJz
@@ -100,7 +100,7 @@ KerasModel: !!python/object/apply:tf_keras.src.saving.pickle_utils.deserialize_m
   IiwgMCwgMCwge31dXV19XSwgImlucHV0X2xheWVycyI6IFtbImlucHV0XzEiLCAwLCAwXV0sICJv
   dXRwdXRfbGF5ZXJzIjogW1siZGVuc2UiLCAwLCAwXV19LCAicmVnaXN0ZXJlZF9uYW1lIjogIkZ1
   bmN0aW9uYWwiLCAiYnVpbGRfY29uZmlnIjogeyJpbnB1dF9zaGFwZSI6IFtudWxsLCA0LCAyNTYs
-  IDFdfX1QSwMEFAAAAAAAJHdNWx6oAOK8iAAAvIgAABAAAABtb2RlbC53ZWlnaHRzLmg1iUhERg0K
+  IDFdfX1QSwMEFAAAAAAA25BNWx6oAOK8iAAAvIgAABAAAABtb2RlbC53ZWlnaHRzLmg1iUhERg0K
   GgoAAAAAAAgIAAQAEAAAAAAAAAAAAAAAAAD//////////7yIAAAAAAAA//////////8AAAAAAAAA
   AGAAAAAAAAAAAQAAAAAAAACIAAAAAAAAAKgCAAAAAAAAAQABAAEAAAAYAAAAAAAAABEAEAAAAAAA
   iAAAAAAAAACoAgAAAAAAAFRSRUUAAAEA/////////////////////wAAAAAAAAAA4AUAAAAAAAAI
@@ -715,13 +715,13 @@ KerasModel: !!python/object/apply:tf_keras.src.saving.pickle_utils.deserialize_m
   AbiIAAAAAAAABAAAAAAAAAAAAAAAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADKLPS8
-  UEsBAhQDFAAAAAAAAAAhAKTS+mtAAAAAQAAAAA0AAAAAAAAAAAAAAIABAAAAAG1ldGFkYXRhLmpz
+  UEsBAhQDFAAAAAAAAAAhAOTUbipAAAAAQAAAAA0AAAAAAAAAAAAAAIABAAAAAG1ldGFkYXRhLmpz
   b25QSwECFAMUAAAAAAAAACEAulZ13JQMAACUDAAACwAAAAAAAAAAAAAAgAFrAAAAY29uZmlnLmpz
-  b25QSwECFAMUAAAAAAAkd01bHqgA4ryIAAC8iAAAEAAAAAAAAAAAAAAAgAEoDQAAbW9kZWwud2Vp
+  b25QSwECFAMUAAAAAADbkE1bHqgA4ryIAAC8iAAAEAAAAAAAAAAAAAAAgAEoDQAAbW9kZWwud2Vp
   Z2h0cy5oNVBLBQYAAAAAAwADALIAAAASlgAAAAA=
 OutputDir: hls_cnn_2d_100s
 OutputPredictions: null
 Part: xcku5p-ffvb676-2-e
 ProjectName: hls_cnn_2d_100s
-Stamp: 3Cf9dfa1
+Stamp: E5bFf40f
 Version: 1.0.0
