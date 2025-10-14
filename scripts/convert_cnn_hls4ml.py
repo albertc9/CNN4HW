@@ -117,10 +117,10 @@ def load_keras_model(path, strip_dropout=True):
     return keras.Model(inputs=inputs, outputs=x, name="converted_model")
 
 
-def make_hls_config(model, default_precision="ap_fixed<8,2>", reuse=1, io_type="io_stream"):
+def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="io_stream"):
     """
     200 MHz target:
-    - ClockPeriod = 4 ns
+    - ClockPeriod = 5 ns
     - Strategy = 'Latency'
     - ReuseFactor = 8 (globally & per-layer)
     - Larger Activation table_size to improve sigmoid LUT accuracy
@@ -133,7 +133,7 @@ def make_hls_config(model, default_precision="ap_fixed<8,2>", reuse=1, io_type="
             'Strategy': 'Latency',       # Prefer shortest critical path for high Fmax
             'BramFactor': 8000,
             'PipelineStyle': 'dataflow',
-            'ClockPeriod': 4,            # 4 ns -> 250 MHz
+            'ClockPeriod': 5,            # 5 ns -> 200 MHz
             'IOType': io_type
         },
         'LayerName': {},
@@ -163,17 +163,17 @@ def make_hls_config(model, default_precision="ap_fixed<8,2>", reuse=1, io_type="
             # Optimize Conv2D output precision (ReLU activation -> output range [0, ~0.3])
             if cls == "Conv2D":
                 # Conv2D MAC before ReLU: use generous precision to avoid any overflow
-                prec['accum'] = 'ap_fixed<24,4>'  # MAC accumulator [-512,512)
-                prec['result'] = 'ap_fixed<14,2>' # Pre-ReLU result
+                prec['accum'] = 'ap_fixed<20,4>'  # MAC accumulator [-512,512)
+                prec['result'] = 'ap_fixed<12,2>' # Pre-ReLU result
 
             # Optimize final Dense output precision
             if cls == "Dense" and name == "dense":
                 # Dense MAC: 2380 inputs × 0.31 × 0.66 ≈ 487 → use ap_fixed<28,12>
                 prec = {
-                    'result': 'ap_fixed<12,6>',   # Sigmoid output
+                    'result': 'ap_fixed<10,6>',   # Sigmoid output
                     'weight': default_precision,
                     'bias':   default_precision,
-                    'accum': 'ap_fixed<26,10>'     # Extra headroom for MAC
+                    'accum': 'ap_fixed<17,6>'     # Extra headroom for MAC
                 }
 
             cfg['LayerName'][name] = {
