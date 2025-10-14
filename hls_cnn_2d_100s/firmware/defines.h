@@ -29,20 +29,20 @@
 
 // hls-fpga-machine-learning insert layer-precision
 typedef nnet::array<ap_fixed<16,2>, 1*1> input_t;
-typedef ap_fixed<24,4> conv2d_accum_t;
-typedef nnet::array<ap_fixed<14,2>, 20*1> layer2_t;
+typedef ap_fixed<20,4> conv2d_accum_t;
+typedef nnet::array<ap_fixed<12,2>, 20*1> layer2_t;
 typedef ap_fixed<16,2> conv2d_weight_t;
 typedef ap_fixed<16,2> conv2d_bias_t;
 typedef nnet::array<ap_fixed<16,2>, 20*1> layer3_t;
 typedef ap_fixed<18,8> conv2d_relu_table_t;
-typedef ap_fixed<24,4> conv2d_1_accum_t;
-typedef nnet::array<ap_fixed<14,2>, 10*1> layer4_t;
+typedef ap_fixed<20,4> conv2d_1_accum_t;
+typedef nnet::array<ap_fixed<12,2>, 10*1> layer4_t;
 typedef ap_fixed<16,2> conv2d_1_weight_t;
 typedef ap_fixed<16,2> conv2d_1_bias_t;
 typedef nnet::array<ap_fixed<16,2>, 10*1> layer5_t;
 typedef ap_fixed<18,8> conv2d_1_relu_table_t;
-typedef ap_fixed<26,10> dense_accum_t;
-typedef nnet::array<ap_fixed<12,6>, 1*1> layer7_t;
+typedef ap_fixed<17,6> dense_accum_t;
+typedef nnet::array<ap_fixed<10,6>, 1*1> layer7_t;
 typedef ap_fixed<16,2> dense_weight_t;
 typedef ap_fixed<16,2> dense_bias_t;
 typedef ap_uint<1> layer7_index;

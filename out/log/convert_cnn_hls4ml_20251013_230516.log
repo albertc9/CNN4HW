@@ -1,0 +1,177 @@
+[Info] Logging to: out/log/convert_cnn_hls4ml_20251013_230516.log
+[Info] TF version: 2.20.0
+[Info] hls4ml version: 0.8.1
+[Info] Using config: {
+  "model": "/home/work1/Work/CNN_iCube_FPGA_b/models/10.07.25_15-31_100s_2D_CNN_model_2Layer.h5",
+  "sample": "/home/work1/Work/CNN_iCube_FPGA_b/out/X_pkl-filtered_float32_N_4_256_1.npy",
+  "labels": null,
+  "outdir": "hls_cnn_2d_100s",
+  "part": "xcku5p-ffvb676-2-e",
+  "backend": "Vitis",
+  "io": "io_stream",
+  "precision": "ap_fixed<16,2>",
+  "reuse": 8,
+  "strip_dropout": true,
+  "do_build": false,
+  "test_batch": 8,
+  "eval_maxN": 4096,
+  "eval_batch": 256,
+  "save_preds": false,
+  "preds_out": "preds_eval.npz",
+  "task_threshold": 0.5
+}
+[OK] Model input shape verified: (None, 4, 256, 1)
+
+=== Keras Model Summary ===
+Model: "converted_model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_1 (InputLayer)        [(None, 4, 256, 1)]       0         
+                                                                 
+ conv2d (Conv2D)             (None, 1, 247, 20)        820       
+                                                                 
+ conv2d_1 (Conv2D)           (None, 1, 238, 10)        2010      
+                                                                 
+ flatten (Flatten)           (None, 2380)              0         
+                                                                 
+ dense (Dense)               (None, 1)                 2381      
+                                                                 
+=================================================================
+Total params: 5211 (20.36 KB)
+Trainable params: 5211 (20.36 KB)
+Non-trainable params: 0 (0.00 Byte)
+_________________________________________________________________
+
+=== Layer Details (Conv2D/Dense) ===
+[Conv2D] conv2d filters=20 kernel=(4, 10) stride=(1, 1) padding=valid activation=relu data_format=channels_last
+[Conv2D] conv2d_1 filters=10 kernel=(1, 10) stride=(1, 1) padding=valid activation=relu data_format=channels_last
+[Dense ] dense units=1 activation=sigmoid
+
+=== HLS Config (compact) ===
+{
+  "Model": {
+    "Precision": "ap_fixed<16,2>",
+    "ReuseFactor": 8,
+    "Strategy": "Latency",
+    "BramFactor": 8000,
+    "PipelineStyle": "dataflow",
+    "ClockPeriod": 5,
+    "IOType": "io_stream"
+  },
+  "LayerName": {
+    "conv2d": {
+      "Precision": {
+        "result": "ap_fixed<14,2>",
+        "weight": "ap_fixed<16,2>",
+        "bias": "ap_fixed<16,2>",
+        "accum": "ap_fixed<20,4>"
+      },
+      "ReuseFactor": 8,
+      "Strategy": "Latency"
+    },
+    "conv2d_1": {
+      "Precision": {
+        "result": "ap_fixed<14,2>",
+        "weight": "ap_fixed<16,2>",
+        "bias": "ap_fixed<16,2>",
+        "accum": "ap_fixed<20,4>"
+      },
+      "ReuseFactor": 8,
+      "Strategy": "Latency"
+    },
+    "dense": {
+      "Precision": {
+        "result": "ap_fixed<12,6>",
+        "weight": "ap_fixed<16,2>",
+        "bias": "ap_fixed<16,2>",
+        "accum": "ap_fixed<26,10>"
+      },
+      "ReuseFactor": 8,
+      "Strategy": "Latency"
+    }
+  }
+}
+
+[Step] Converting Keras model → HLS project ...
+Interpreting Model
+Topology:
+Layer name: input_1, layer type: InputLayer, input shapes: [[None, 4, 256, 1]], output shape: [None, 4, 256, 1]
+Layer name: conv2d, layer type: Conv2D, input shapes: [[None, 4, 256, 1]], output shape: [None, 1, 247, 20]
+Layer name: conv2d_1, layer type: Conv2D, input shapes: [[None, 1, 247, 20]], output shape: [None, 1, 238, 10]
+Layer name: flatten, layer type: Reshape, input shapes: [[None, 1, 238, 10]], output shape: [None, np.int64(2380)]
+Layer name: dense, layer type: Dense, input shapes: [[None, np.int64(2380)]], output shape: [None, 1]
+Creating HLS model
+[OK] Conversion done. Project at: hls_cnn_2d_100s
+[OK] Updated project.tcl backend to: Vitis
+
+[Step] Compiling HLS C-simulation model ...
+Writing HLS project
+Done
+[OK] C-sim compile done.
+
+>>> Real-batch check:
+N=8 | MAE=0.000976235 | MaxΔ=0.000976443
+
+>>> Single sample check (@ sample path):
+Keras: 0.9999996423721313  | HLS: 0.9990234375
+
+>>> Random-input diagnostic (not representative):
+MAE=0.374634 | MaxΔ=0.999023
+Keras preds (first 5): [0.0, 0.0, 0.0, 0.0, 0.0]
+HLS   preds (first 5): [0.0, 0.0, 0.9990234375, 0.0, 0.9990234375]
+
+[Level-A] NUMERIC DATASET (per-sample)  N=1341  MAE=0.00234261  RMSE=0.00628211  MaxΔ=0.0563647
+[Level-A] Top-50 |Δ| samples (idx, y_keras, y_hls, Δ):
+  #  555: 0.431917  vs  0.488281   Δ=0.056365
+  #  651: 0.343335  vs  0.395508   Δ=0.052172
+  # 1317: 0.433640  vs  0.484375   Δ=0.050735
+  # 1100: 0.493749  vs  0.538086   Δ=0.044337
+  #  967: 0.624271  vs  0.665039   Δ=0.040768
+  # 1080: 0.700116  vs  0.739258   Δ=0.039142
+  # 1114: 0.450051  vs  0.488281   Δ=0.038230
+  # 1076: 0.613093  vs  0.650391   Δ=0.037297
+  # 1010: 0.649204  vs  0.685547   Δ=0.036343
+  #  354: 0.700349  vs  0.736328   Δ=0.035979
+  # 1007: 0.291231  vs  0.327148   Δ=0.035917
+  #  580: 0.688860  vs  0.724609   Δ=0.035749
+  #  366: 0.762560  vs  0.797852   Δ=0.035291
+  # 1006: 0.748926  vs  0.782227   Δ=0.033301
+  #  650: 0.718955  vs  0.751953   Δ=0.032998
+  #  618: 0.337382  vs  0.370117   Δ=0.032735
+  # 1112: 0.747747  vs  0.779297   Δ=0.031550
+  # 1165: 0.772717  vs  0.802734   Δ=0.030017
+  # 1310: 0.682507  vs  0.711914   Δ=0.029407
+  # 1224: 0.695411  vs  0.724609   Δ=0.029198
+  #  943: 0.424747  vs  0.453125   Δ=0.028378
+  # 1149: 0.816473  vs  0.843750   Δ=0.027277
+  #   44: 0.806407  vs  0.833008   Δ=0.026601
+  #  484: 0.168075  vs  0.194336   Δ=0.026261
+  # 1060: 0.763881  vs  0.790039   Δ=0.026158
+  #  350: 0.811305  vs  0.836914   Δ=0.025609
+  #   74: 0.524224  vs  0.549805   Δ=0.025581
+  #  173: 0.234275  vs  0.259766   Δ=0.025491
+  # 1025: 0.746070  vs  0.771484   Δ=0.025414
+  # 1101: 0.702253  vs  0.727539   Δ=0.025286
+  #  530: 0.399053  vs  0.421875   Δ=0.022822
+  # 1315: 0.803424  vs  0.826172   Δ=0.022748
+  # 1023: 0.841677  vs  0.864258   Δ=0.022580
+  #  634: 0.846142  vs  0.868164   Δ=0.022022
+  #  528: 0.837727  vs  0.859375   Δ=0.021648
+  # 1068: 0.797739  vs  0.819336   Δ=0.021597
+  # 1016: 0.838573  vs  0.859375   Δ=0.020802
+  #  988: 0.866018  vs  0.886719   Δ=0.020701
+  #   36: 0.502098  vs  0.522461   Δ=0.020363
+  #  421: 0.789339  vs  0.809570   Δ=0.020232
+  # 1001: 0.840090  vs  0.859375   Δ=0.019285
+  #  601: 0.859726  vs  0.878906   Δ=0.019180
+  #  556: 0.899788  vs  0.918945   Δ=0.019157
+  # 1072: 0.855068  vs  0.874023   Δ=0.018956
+  #  695: 0.865183  vs  0.883789   Δ=0.018606
+  #  635: 0.835244  vs  0.853516   Δ=0.018271
+  # 1102: 0.835465  vs  0.853516   Δ=0.018051
+  # 1004: 0.883361  vs  0.901367   Δ=0.018006
+  #  984: 0.885018  vs  0.902344   Δ=0.017325
+  #  147: 0.109876  vs  0.126953   Δ=0.017077
+[Level-A] Saved CSV comparison (all 1341 samples, sorted by |Δ|) to: out/error_analysis/level_a_comparison_20251013_230516.csv
+[Info] Level-B skipped: CONFIG['labels'] is None.
