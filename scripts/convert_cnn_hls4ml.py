@@ -166,8 +166,19 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
                 prec['accum'] = 'ap_fixed<20,4>'  # MAC accumulator [-512,512)
                 prec['result'] = 'ap_fixed<12,2>' # Pre-ReLU result
 
+                # Per-layer ReuseFactor tuning for Conv2D
+                # conv2d (first layer): RF=4 for 50% latency reduction (DSP: 100→200)
+                # conv2d_1 (second layer): RF=8 to save resources
+                layer_reuse = 4 if name == "conv2d" else int(reuse)
+
+                cfg['LayerName'][name] = {
+                    'Precision': prec,
+                    'ReuseFactor': layer_reuse,
+                    'Strategy': 'Latency',
+                }
+
             # Optimize final Dense output precision
-            if cls == "Dense" and name == "dense":
+            elif cls == "Dense" and name == "dense":
                 # Dense MAC: 2380 inputs × 0.31 × 0.66 ≈ 487 → use ap_fixed<28,12>
                 prec = {
                     'result': 'ap_fixed<10,6>',   # Sigmoid output
@@ -176,12 +187,25 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
                     'accum': 'ap_fixed<17,6>'     # Extra headroom for MAC
                 }
 
-            cfg['LayerName'][name] = {
-                'Precision': prec,
-                'ReuseFactor': int(reuse),
-                # Use embedded ROM instead of external BRAM interface
-                'Strategy': 'Latency',  # Use LUTs/distributed RAM for weights
-            }
+                # Dense layer: RF=32 to reduce resource usage (44% LUT → ~7% LUT)
+                # Latency impact: +750 cycles (~3.8us), but total latency dominated by conv2d
+                cfg['LayerName'][name] = {
+                    'Precision': prec,
+                    'ReuseFactor': 32,
+                    'Strategy': 'Resource',  # Optimize for area
+                }
+
+            else:
+                # Other Dense/Conv layers use default settings (fallback, rarely used)
+                cfg['LayerName'][name] = {
+                    'Precision': {
+                        'result': default_precision,
+                        'weight': default_precision,
+                        'bias': default_precision
+                    },
+                    'ReuseFactor': int(reuse),
+                    'Strategy': 'Latency',
+                }
 
         elif cls in ("Activation", "ReLU", "LeakyReLU", "PReLU"):
             cfg['LayerName'][name] = {'Precision': default_precision}
