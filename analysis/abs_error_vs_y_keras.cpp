@@ -17,7 +17,7 @@
 void abs_error_vs_y_keras() {
     // ==================== PARAMETERS ====================
     // Input file
-    const char* inputCSV = "/home/work1/Work/CNN_iCube_FPGA_b/out/error_analysis/level_a_comparison_20251010_155810.csv";
+    const char* inputCSV = "/home/work1/Work/CNN_iCube_FPGA_b/out/error_analysis/level_a_comparison_20251013_180655.csv";
 
     // Output files
     const char* outputROOT = "/home/work1/Work/CNN_iCube_FPGA_b/analysis/output/abs_error_vs_y_keras.root";

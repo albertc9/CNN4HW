@@ -1,849 +1,16 @@
-
-****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.2 (64-bit)
-  **** SW Build 4023990 on Oct 11 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /home/work1/Apps/Vitis_HLS/2023.2/scripts/vitis_hls/hls.tcl -notrace
-INFO: [HLS 200-10] Running '/home/work1/Apps/Vitis_HLS/2023.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'work1' on host 'dhcp-172-31-232-100.mobile.uci.edu' (Linux_x86_64 version 6.16.8-200.fc42.x86_64) on Mon Oct 13 18:12:45 PDT 2025
-INFO: [HLS 200-10] In directory '/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s'
-INFO: [HLS 200-2053] The vitis_hls executable is being deprecated. Consider using vitis-run --mode hls --tcl
-Sourcing Tcl script 'build_prj.tcl'
-INFO: [HLS 200-1510] Running: open_project hls_cnn_2d_100s_prj 
-INFO: [HLS 200-10] Creating and opening project '/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj'.
-INFO: [HLS 200-1510] Running: set_top hls_cnn_2d_100s 
-INFO: [HLS 200-1510] Running: add_files firmware/hls_cnn_2d_100s.cpp -cflags -std=c++0x 
-INFO: [HLS 200-10] Adding design file 'firmware/hls_cnn_2d_100s.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb hls_cnn_2d_100s_test.cpp -cflags -std=c++0x 
-INFO: [HLS 200-10] Adding test bench file 'hls_cnn_2d_100s_test.cpp' to the project
-INFO: [HLS 200-1510] Running: add_files -tb firmware/weights 
-INFO: [HLS 200-10] Adding test bench file 'firmware/weights' to the project
-INFO: [HLS 200-1510] Running: add_files -tb tb_data 
-INFO: [HLS 200-10] Adding test bench file 'tb_data' to the project
-INFO: [HLS 200-1510] Running: open_solution solution1 
-INFO: [HLS 200-10] Creating and opening solution '/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1'.
-INFO: [HLS 200-1505] Using default flow_target 'vivado'
-Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
-INFO: [HLS 200-1510] Running: config_array_partition -maximum_size 4096 
-INFO: [XFORM 203-101] Allowed max sub elements number after partition is 4096.
-ERROR: [HLS 200-642] The 'config_array_partition -maximum_size' command is not supported.
-INFO: [HLS 200-1510] Running: config_compile -name_max_length 80 
-INFO: [XFORM 203-1161] The maximum of name length is set to 80.
-INFO: [HLS 200-1510] Running: set_part xcku5p-ffvb676-2-e 
-INFO: [HLS 200-1611] Setting target device to 'xcku5p-ffvb676-2-e'
-INFO: [XFORM 203-1161] The maximum of name length is set to 80.
-INFO: [HLS 200-1510] Running: config_schedule -enable_dsp_full_reg=false 
-INFO: [HLS 200-1510] Running: create_clock -period 4 -name default 
-INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
-INFO: [HLS 200-1510] Running: set_clock_uncertainty 12.5% default 
-INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.5ns.
-***** C/RTL SYNTHESIS *****
-INFO: [HLS 200-1510] Running: csynth_design 
-INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 216.047 MB.
-INFO: [HLS 200-10] Analyzing design file 'firmware/hls_cnn_2d_100s.cpp' ... 
-WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (firmware/hls_cnn_2d_100s.cpp:37:68)
-Resolution: For help on HLS 214-113 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=214-113.html
-WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (firmware/hls_cnn_2d_100s.cpp:37:72)
-Resolution: For help on HLS 214-113 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=214-113.html
-WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (firmware/hls_cnn_2d_100s.cpp:45:72)
-Resolution: For help on HLS 214-113 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=214-113.html
-WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (firmware/hls_cnn_2d_100s.cpp:45:76)
-Resolution: For help on HLS 214-113 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=214-113.html
-WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (firmware/hls_cnn_2d_100s.cpp:54:67)
-Resolution: For help on HLS 214-113 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=214-113.html
-WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (firmware/hls_cnn_2d_100s.cpp:54:71)
-Resolution: For help on HLS 214-113 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=214-113.html
-WARNING: [HLS 200-471] Dataflow form checks found 6 issue(s) in file firmware/hls_cnn_2d_100s.cpp
-Resolution: For help on HLS 200-471 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-471.html
-WARNING: [HLS 207-5292] unused parameter 'keep' (firmware/nnet_utils/nnet_helpers.h:285:99)
-WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_code_gen.h:11:36)
-WARNING: [HLS 207-5292] unused parameter 'buffer' (firmware/nnet_utils/nnet_code_gen.h:12:36)
-WARNING: [HLS 207-5292] unused parameter 'partition' (firmware/nnet_utils/nnet_code_gen.h:13:44)
-WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_code_gen.h:21:24)
-WARNING: [HLS 207-5292] unused parameter 'buffer' (firmware/nnet_utils/nnet_code_gen.h:22:24)
-WARNING: [HLS 207-5292] unused parameter 'partition' (firmware/nnet_utils/nnet_code_gen.h:23:32)
-INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 4.56 seconds. CPU system time: 0.48 seconds. Elapsed time: 5.14 seconds; current allocated memory: 222.434 MB.
-INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
-INFO: [HLS 200-1995] There were 4,208 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-WARNING: [HLS 200-1995] There were 338,028 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-WARNING: [HLS 200-1995] There were 103,229 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-WARNING: [HLS 200-1995] There were 103,120 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-WARNING: [HLS 200-1995] There were 102,485 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 80,908 instructions in the design after the 'Array/Struct' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 63,159 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 63,170 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 63,972 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 73,484 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 61,591 instructions in the design after the 'Performance' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 61,575 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 61,562 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 61,562 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 61,404 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 200-1995] There were 61,509 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/report/csynth_design_size.rpt
-INFO: [HLS 214-415] Performing recursive inline in function 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config2>' (firmware/nnet_utils/nnet_conv2d_stream.h:73:9)
-INFO: [HLS 214-415] Performing recursive inline in function 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>' (firmware/nnet_utils/nnet_conv2d_stream.h:73:9)
-INFO: [HLS 214-415] Performing recursive inline in function 'nnet::dense<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config7>' (firmware/nnet_utils/nnet_dense_stream.h:85:9)
-WARNING: [HLS 214-273] In function 'void nnet::dense_latency_wrapper<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>*, config7::weight_t*, config7::bias_t*)', Pragma conflict happens on 'INLINE' and 'PIPELINE' pragmas: same function (firmware/nnet_utils/nnet_dense_stream.h:15:0)
-INFO: [HLS 214-415] Performing recursive inline in function 'nnet::compute_output_buffer_1d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>' (firmware/nnet_utils/nnet_conv_stream.h:363:9)
-WARNING: [HLS 214-273] In function 'void nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, config4_mult::weight_t*, config4_mult::bias_t*)', Pragma conflict happens on 'INLINE' and 'PIPELINE'FUNCTION_INSTANTIATE' pragmas: same function (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-131] Inlining function 'void nnet::kernel_shift_2d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type (*) [config2::n_chan], nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type*)' into 'void nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u> const&, ap_shift_reg<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type, config2::in_width> (*) [config2::n_chan], nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type*)' (firmware/nnet_utils/nnet_conv_stream.h:252:5)
-INFO: [HLS 214-131] Inlining function 'nnet::product::mult<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >::product(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'void nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, config2_mult::weight_t*, config2_mult::bias_t*)' (firmware/nnet_utils/nnet_dense_latency.h:42:27)
-INFO: [HLS 214-131] Inlining function 'void nnet::conv_2d_buffer_latency_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config2>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, config2::weight_t*, config2::bias_t*) (.19)' into 'void nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config2>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, config2::weight_t*, config2::bias_t*)' (firmware/nnet_utils/nnet_conv2d_stream.h:75:9)
-INFO: [HLS 214-131] Inlining function 'nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>::operator[](unsigned long) const (.15)' into 'void nnet::kernel_shift_1d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config4>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u> const&, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>::value_type*) (.14)' (firmware/nnet_utils/nnet_conv_stream.h:181:37)
-INFO: [HLS 214-131] Inlining function 'nnet::product::mult<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >::product(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'void nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, config4_mult::weight_t*, config4_mult::bias_t*)' (firmware/nnet_utils/nnet_dense_latency.h:42:27)
-INFO: [HLS 214-131] Inlining function 'void nnet::kernel_shift_1d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config4>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u> const&, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>::value_type*) (.14)' into 'void nnet::compute_output_buffer_1d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u> const&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, config4::weight_t*, config4::bias_t*) (.11)' (firmware/nnet_utils/nnet_conv_stream.h:357:5)
-INFO: [HLS 214-131] Inlining function 'nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>::operator[](unsigned long) (.1.13)' into 'void nnet::compute_output_buffer_1d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u> const&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, config4::weight_t*, config4::bias_t*) (.11)' (firmware/nnet_utils/nnet_conv_stream.h:376:2)
-INFO: [HLS 214-131] Inlining function 'void nnet::compute_output_buffer_1d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u> const&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, config4::weight_t*, config4::bias_t*) (.11)' into 'void nnet::conv_2d_buffer_latency_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, config4::weight_t*, config4::bias_t*) (.10)' (firmware/nnet_utils/nnet_conv2d_stream.h:33:17)
-INFO: [HLS 214-131] Inlining function 'void nnet::conv_2d_buffer_latency_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, config4::weight_t*, config4::bias_t*) (.10)' into 'void nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, config4::weight_t*, config4::bias_t*)' (firmware/nnet_utils/nnet_conv2d_stream.h:75:9)
-INFO: [HLS 214-131] Inlining function 'nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>::operator[](unsigned long) (.7)' into 'void nnet::data_prepare<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config7>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>::value_type*) (.6)' (firmware/nnet_utils/nnet_dense_stream.h:39:39)
-INFO: [HLS 214-131] Inlining function 'nnet::product::mult<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >::product(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'void nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>*, config7::weight_t*, config7::bias_t*)' (firmware/nnet_utils/nnet_dense_latency.h:42:27)
-INFO: [HLS 214-131] Inlining function 'nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::operator[](unsigned long) (.5)' into 'void nnet::res_write<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config7>(nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type*, hls::stream<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&) (.3)' (firmware/nnet_utils/nnet_dense_stream.h:75:2)
-INFO: [HLS 214-131] Inlining function 'void nnet::data_prepare<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config7>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>::value_type*) (.6)' into 'void nnet::dense<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config7>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, hls::stream<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&, config7::weight_t*, config7::bias_t*)' (firmware/nnet_utils/nnet_dense_stream.h:93:2)
-INFO: [HLS 214-131] Inlining function 'void nnet::res_write<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config7>(nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type*, hls::stream<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&) (.3)' into 'void nnet::dense<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config7>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, hls::stream<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&, config7::weight_t*, config7::bias_t*)' (firmware/nnet_utils/nnet_dense_stream.h:100:5)
-INFO: [HLS 214-291] Loop 'SigmoidPackLoop' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_activation_stream.h:88:9)
-INFO: [HLS 214-291] Loop 'DataPackPipeline' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_dense_stream.h:37:13)
-INFO: [HLS 214-291] Loop 'Result' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_dense_latency.h:64:5)
-INFO: [HLS 214-291] Loop 'Accum1' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_dense_latency.h:54:5)
-INFO: [HLS 214-291] Loop 'Accum2' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_dense_latency.h:56:9)
-INFO: [HLS 214-291] Loop 'ResetAccum' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_dense_latency.h:48:5)
-INFO: [HLS 214-291] Loop 'Product1' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_dense_latency.h:37:5)
-INFO: [HLS 214-291] Loop 'Product2' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_dense_latency.h:40:9)
-INFO: [HLS 214-291] Loop 'ReLUPackLoop' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_activation_stream.h:49:9)
-INFO: [HLS 214-291] Loop 'KernelShiftWidth' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:166:5)
-INFO: [HLS 214-291] Loop 'KernelShiftChannel' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:169:9)
-INFO: [HLS 214-291] Loop 'KernelPushChannel' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:179:5)
-INFO: [HLS 214-291] Loop 'CastLoop' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:374:9)
-INFO: [HLS 214-291] Loop 'CastLoop' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:303:9)
-INFO: [HLS 214-291] Loop 'KernelPushHeight' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:210:5)
-INFO: [HLS 214-291] Loop 'KernelPushChannel' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:213:9)
-INFO: [HLS 214-291] Loop 'KernelShiftWidth' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:194:5)
-INFO: [HLS 214-291] Loop 'KernelShiftHeight' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:197:9)
-INFO: [HLS 214-291] Loop 'KernelShiftChannel' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:199:13)
-INFO: [HLS 214-291] Loop 'LineBufferDataIn' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:241:5)
-INFO: [HLS 214-291] Loop 'LineBufferShift' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:244:9)
-INFO: [HLS 214-291] Loop 'UpdateBuffer' is marked as complete unroll implied by the pipeline pragma (firmware/nnet_utils/nnet_conv_stream.h:233:5)
-INFO: [HLS 214-186] Unrolling loop 'SigmoidPackLoop' (firmware/nnet_utils/nnet_activation_stream.h:88:9) in function 'nnet::sigmoid<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, sigmoid_config8>' completely with a factor of 1 (firmware/nnet_utils/nnet_activation_stream.h:65:0)
-INFO: [HLS 214-186] Unrolling loop 'ResPackSingle' (firmware/nnet_utils/nnet_dense_stream.h:73:9) in function 'nnet::dense<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config7>' completely with a factor of 1 (firmware/nnet_utils/nnet_dense_stream.h:84:0)
-INFO: [HLS 214-186] Unrolling loop 'DataPackPipeline' (firmware/nnet_utils/nnet_dense_stream.h:37:13) in function 'nnet::dense<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config7>' completely with a factor of 10 (firmware/nnet_utils/nnet_dense_stream.h:84:0)
-INFO: [HLS 214-186] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_latency.h:64:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' completely with a factor of 1 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Accum1' (firmware/nnet_utils/nnet_dense_latency.h:54:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' completely with a factor of 2380 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Accum2' (firmware/nnet_utils/nnet_dense_latency.h:56:9) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' completely with a factor of 1 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'ResetAccum' (firmware/nnet_utils/nnet_dense_latency.h:48:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' completely with a factor of 1 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Product1' (firmware/nnet_utils/nnet_dense_latency.h:37:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' completely with a factor of 2380 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Product2' (firmware/nnet_utils/nnet_dense_latency.h:40:9) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' completely with a factor of 1 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'ReLUPackLoop' (firmware/nnet_utils/nnet_activation_stream.h:49:9) in function 'nnet::relu<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, relu_config5>' completely with a factor of 10 (firmware/nnet_utils/nnet_activation_stream.h:39:0)
-INFO: [HLS 214-186] Unrolling loop 'KernelShiftWidth' (firmware/nnet_utils/nnet_conv_stream.h:166:5) in function 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>' completely with a factor of 9 (firmware/nnet_utils/nnet_conv2d_stream.h:69:0)
-WARNING: [HLS 214-189] Pipeline directive for loop 'KernelShiftWidth' (firmware/nnet_utils/nnet_conv_stream.h:166:5) in function 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>' has been removed because the loop is unrolled completely (firmware/nnet_utils/nnet_conv2d_stream.h:69:0)
-INFO: [HLS 214-186] Unrolling loop 'KernelShiftChannel' (firmware/nnet_utils/nnet_conv_stream.h:169:9) in function 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>' completely with a factor of 20 (firmware/nnet_utils/nnet_conv2d_stream.h:69:0)
-INFO: [HLS 214-186] Unrolling loop 'KernelPushChannel' (firmware/nnet_utils/nnet_conv_stream.h:179:5) in function 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>' completely with a factor of 20 (firmware/nnet_utils/nnet_conv2d_stream.h:69:0)
-INFO: [HLS 214-186] Unrolling loop 'CastLoop' (firmware/nnet_utils/nnet_conv_stream.h:374:9) in function 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>' completely with a factor of 10 (firmware/nnet_utils/nnet_conv2d_stream.h:69:0)
-INFO: [HLS 214-186] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_latency.h:64:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>' completely with a factor of 10 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Accum1' (firmware/nnet_utils/nnet_dense_latency.h:54:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>' completely with a factor of 200 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Accum2' (firmware/nnet_utils/nnet_dense_latency.h:56:9) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>' completely with a factor of 10 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'ResetAccum' (firmware/nnet_utils/nnet_dense_latency.h:48:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>' completely with a factor of 10 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Product1' (firmware/nnet_utils/nnet_dense_latency.h:37:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>' completely with a factor of 200 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Product2' (firmware/nnet_utils/nnet_dense_latency.h:40:9) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>' completely with a factor of 10 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'ReLUPackLoop' (firmware/nnet_utils/nnet_activation_stream.h:49:9) in function 'nnet::relu<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, relu_config3>' completely with a factor of 20 (firmware/nnet_utils/nnet_activation_stream.h:39:0)
-INFO: [HLS 214-186] Unrolling loop 'CastLoop' (firmware/nnet_utils/nnet_conv_stream.h:303:9) in function 'nnet::compute_output_buffer_2d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config2>' completely with a factor of 20 (firmware/nnet_utils/nnet_conv_stream.h:262:0)
-INFO: [HLS 214-186] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_latency.h:64:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>' completely with a factor of 20 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Accum1' (firmware/nnet_utils/nnet_dense_latency.h:54:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>' completely with a factor of 40 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Accum2' (firmware/nnet_utils/nnet_dense_latency.h:56:9) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>' completely with a factor of 20 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'ResetAccum' (firmware/nnet_utils/nnet_dense_latency.h:48:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>' completely with a factor of 20 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Product1' (firmware/nnet_utils/nnet_dense_latency.h:37:5) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>' completely with a factor of 40 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'Product2' (firmware/nnet_utils/nnet_dense_latency.h:40:9) in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>' completely with a factor of 20 (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-186] Unrolling loop 'KernelPushHeight' (firmware/nnet_utils/nnet_conv_stream.h:210:5) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' completely with a factor of 4 (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-186] Unrolling loop 'KernelPushChannel' (firmware/nnet_utils/nnet_conv_stream.h:213:9) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' completely with a factor of 1 (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-186] Unrolling loop 'KernelShiftWidth' (firmware/nnet_utils/nnet_conv_stream.h:194:5) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' completely with a factor of 9 (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-WARNING: [HLS 214-189] Pipeline directive for loop 'KernelShiftWidth' (firmware/nnet_utils/nnet_conv_stream.h:194:5) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' has been removed because the loop is unrolled completely (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-186] Unrolling loop 'KernelShiftHeight' (firmware/nnet_utils/nnet_conv_stream.h:197:9) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' completely with a factor of 4 (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-186] Unrolling loop 'KernelShiftChannel' (firmware/nnet_utils/nnet_conv_stream.h:199:13) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' completely with a factor of 1 (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-186] Unrolling loop 'LineBufferDataIn' (firmware/nnet_utils/nnet_conv_stream.h:241:5) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' completely with a factor of 1 (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-186] Unrolling loop 'LineBufferShift' (firmware/nnet_utils/nnet_conv_stream.h:244:9) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' completely with a factor of 3 (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-186] Unrolling loop 'UpdateBuffer' (firmware/nnet_utils/nnet_conv_stream.h:233:5) in function 'nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>' completely with a factor of 1 (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-178] Inlining function 'nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::operator[](unsigned long) const' into 'void nnet::shift_line_buffer<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config2>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u> const&, ap_shift_reg<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type, config2::in_width> (*) [config2::n_chan], nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type*)' (firmware/nnet_utils/nnet_conv_stream.h:224:0)
-INFO: [HLS 214-178] Inlining function 'std::enable_if<!(std::is_same<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<1> >::value), ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >::type nnet::cast<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>(config2_mult::accum_t)' into 'void nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, config2_mult::weight_t*, config2_mult::bias_t*)' (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-178] Inlining function 'nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>::operator[](unsigned long)' into 'void nnet::compute_output_buffer_2d<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config2>(nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u> const&, ap_shift_reg<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::value_type, config2::in_width> (*) [config2::n_chan], hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, config2::weight_t*, config2::bias_t*)' (firmware/nnet_utils/nnet_conv_stream.h:262:0)
-INFO: [HLS 214-178] Inlining function 'nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>::operator[](unsigned long)' into 'void nnet::relu<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, relu_config3>(hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&)' (firmware/nnet_utils/nnet_activation_stream.h:39:0)
-INFO: [HLS 214-178] Inlining function 'nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>::operator[](unsigned long)' into 'void nnet::relu<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, relu_config3>(hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&)' (firmware/nnet_utils/nnet_activation_stream.h:39:0)
-INFO: [HLS 214-178] Inlining function 'std::enable_if<!(std::is_same<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<1> >::value), ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >::type nnet::cast<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>(config4_mult::accum_t)' into 'void nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, config4_mult::weight_t*, config4_mult::bias_t*)' (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-178] Inlining function 'nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>::operator[](unsigned long)' into 'void nnet::relu<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, relu_config5>(hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&)' (firmware/nnet_utils/nnet_activation_stream.h:39:0)
-INFO: [HLS 214-178] Inlining function 'nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>::operator[](unsigned long)' into 'void nnet::relu<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, relu_config5>(hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&, hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, 0>&)' (firmware/nnet_utils/nnet_activation_stream.h:39:0)
-INFO: [HLS 214-178] Inlining function 'std::enable_if<!(std::is_same<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<1> >::value), ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::type nnet::cast<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>(config7::accum_t)' into 'void nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>(ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>*, config7::weight_t*, config7::bias_t*)' (firmware/nnet_utils/nnet_dense_latency.h:15:0)
-INFO: [HLS 214-178] Inlining function 'nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::operator[](unsigned long)' into 'void nnet::sigmoid<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, sigmoid_config8>(hls::stream<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&, hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&)' (firmware/nnet_utils/nnet_activation_stream.h:65:0)
-INFO: [HLS 214-178] Inlining function 'nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>::operator[](unsigned long)' into 'void nnet::sigmoid<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, sigmoid_config8>(hls::stream<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&, hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&)' (firmware/nnet_utils/nnet_activation_stream.h:65:0)
-INFO: [HLS 214-248] Applying array_partition to '_ZZN4nnet25conv_2d_buffer_latency_clINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9ap_o_mode3ELi0EELj1EEENS1_IS2_ILi14ELi2ELS3_5ELS4_3ELi0EELj20EEE7config2EEvRN3hls6streamIT_Li0EEERNSB_IT0_Li0EEEPNT1_8weight_tEPNSI_6bias_tEE11line_buffer': Complete partitioning on dimension 1. Complete partitioning on dimension 2. (firmware/nnet_utils/nnet_conv2d_stream.h:19:0)
-INFO: [HLS 214-248] Applying array_partition to 'b2': Complete partitioning on dimension 1. (firmware/weights/b2.h:12:0)
-INFO: [HLS 214-248] Applying array_partition to 'b4': Complete partitioning on dimension 1. (firmware/weights/b4.h:12:0)
-INFO: [HLS 214-248] Applying array_partition to 'b7': Complete partitioning on dimension 1. (firmware/weights/b7.h:12:0)
-INFO: [HLS 214-248] Applying array_partition to '_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9ap_o_mode3ELi0EELj20EEENS1_IS2_ILi14ELi2ELS3_5ELS4_3ELi0EELj10EEE7config4EEvRKT_RN3hls6streamIT0_Li0EEEPNT1_8weight_tEPNSI_6bias_tEE11kernel_data': Complete partitioning on dimension 1. (firmware/nnet_utils/nnet_conv_stream.h:347:0)
-INFO: [HLS 214-248] Applying array_partition to '_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9ap_o_mode3ELi0EELj1EEENS1_IS2_ILi14ELi2ELS3_5ELS4_3ELi0EELj20EEE7config2EEvRKT_PAsrT1_6n_chan_12ap_shift_regINSA_10value_typeEXsrSD_8in_widthEERN3hls6streamIT0_Li0EEEPNSD_8weight_tEPNSD_6bias_tEE11kernel_data': Complete partitioning on dimension 1. (firmware/nnet_utils/nnet_conv_stream.h:276:0)
-INFO: [HLS 214-248] Applying array_partition to 'mult': Complete partitioning on dimension 1. (firmware/nnet_utils/nnet_dense_latency.h:17:32)
-INFO: [HLS 214-248] Applying array_partition to 'res_out': Complete partitioning on dimension 1. (firmware/nnet_utils/nnet_conv_stream.h:279:29)
-INFO: [HLS 214-248] Applying array_partition to 'res_out.i.i': Complete partitioning on dimension 1. (firmware/nnet_utils/nnet_conv_stream.h:350:29)
-INFO: [HLS 214-248] Applying array_partition to 'data': Complete partitioning on dimension 1. (firmware/nnet_utils/nnet_dense_stream.h:87:30)
-INFO: [HLS 214-248] Applying array_partition to 'res': Complete partitioning on dimension 1. (firmware/nnet_utils/nnet_dense_stream.h:90:29)
-INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'layer7_out' with compact=bit mode in 12-bits (firmware/hls_cnn_2d_100s.cpp:52:27)
-INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'layer5_out' with compact=bit mode in 160-bits (firmware/hls_cnn_2d_100s.cpp:47:27)
-INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'layer4_out' with compact=bit mode in 140-bits (firmware/hls_cnn_2d_100s.cpp:43:27)
-INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'layer3_out' with compact=bit mode in 320-bits (firmware/hls_cnn_2d_100s.cpp:39:27)
-INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'layer2_out' with compact=bit mode in 280-bits (firmware/hls_cnn_2d_100s.cpp:35:24)
-INFO: [HLS 214-241] Aggregating bram variable 'void nnet::conv_2d_buffer_latency_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config2>(hls::stream<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, 0>&, hls::stream<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, 0>&, config2::weight_t*, config2::bias_t*)::line_buffer' with compact=bit mode in 16-bits
-INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 127.92 seconds. CPU system time: 0.88 seconds. Elapsed time: 129.92 seconds; current allocated memory: 292.414 MB.
-INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 292.414 MB.
-INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 3.26 seconds. CPU system time: 0.02 seconds. Elapsed time: 3.3 seconds; current allocated memory: 352.910 MB.
-INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 3.86 seconds. CPU system time: 0.03 seconds. Elapsed time: 3.89 seconds; current allocated memory: 413.691 MB.
-INFO: [XFORM 203-712] Applying dataflow to function 'hls_cnn_2d_100s' (firmware/hls_cnn_2d_100s.cpp:7), detected/extracted 6 process function(s): 
-	 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config2>'
-	 'nnet::relu<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, relu_config3>'
-	 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, config4>'
-	 'nnet::relu<nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, relu_config5>'
-	 'nnet::dense<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 10u>, nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, config7>'
-	 'nnet::sigmoid<nnet::array<ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, sigmoid_config8>'.
-INFO: [XFORM 203-11] Balancing expressions in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config4_mult>' (firmware/nnet_utils/nnet_dense_latency.h:33:27)...1999 expression(s) balanced.
-INFO: [XFORM 203-11] Balancing expressions in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_mult>' (firmware/nnet_utils/nnet_dense_latency.h:33:27)...800 expression(s) balanced.
-INFO: [XFORM 203-11] Balancing expressions in function 'nnet::dense_latency<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<12, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' (firmware/nnet_utils/nnet_mult.h:17:29)...2379 expression(s) balanced.
-INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 21.33 seconds. CPU system time: 0.05 seconds. Elapsed time: 21.44 seconds; current allocated memory: 575.484 MB.
-INFO: [XFORM 203-541] Flattening a loop nest 'ReadInputHeight' (firmware/nnet_utils/nnet_conv2d_stream.h:24:5) in function 'nnet::conv_2d_cl<nnet::array<ap_fixed<16, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1u>, nnet::array<ap_fixed<14, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 20u>, config2>'.
-INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 17.37 seconds. CPU system time: 0.11 seconds. Elapsed time: 17.52 seconds; current allocated memory: 929.660 MB.
-INFO: [HLS 200-10] Starting hardware synthesis ...
-INFO: [HLS 200-10] Synthesizing 'hls_cnn_2d_100s' ...
-WARNING: [SYN 201-103] Legalizing function name 'shift_line_buffer<array<ap_fixed<16, 2, 5, 3, 0>, 1u>, config2>' to 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s'.
-WARNING: [SYN 201-103] Legalizing function name 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config2_mult>' to 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s'.
-WARNING: [SYN 201-103] Legalizing function name 'compute_output_buffer_2d<array,array<ap_fixed<14,2,5,3,0>,20u>,config2>' to 'compute_output_buffer_2d_array_array_ap_fixed_14_2_5_3_0_20u_config2_s'.
-WARNING: [SYN 201-103] Legalizing function name 'conv_2d_cl<array<ap_fixed,1u>,array<ap_fixed<14,2,5,3,0>,20u>,config2>' to 'conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_14_2_5_3_0_20u_config2_s'.
-WARNING: [SYN 201-103] Legalizing function name 'relu<array<ap_fixed,20u>,array<ap_fixed<16,2,5,3,0>,20u>,relu_config3>' to 'relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_s'.
-WARNING: [SYN 201-103] Legalizing function name 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config4_mult>' to 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s'.
-WARNING: [SYN 201-103] Legalizing function name 'conv_2d_cl<array<ap_fixed,20u>,array<ap_fixed<14,2,5,3,0>,10u>,config4>' to 'conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_s'.
-WARNING: [SYN 201-103] Legalizing function name 'relu<array<ap_fixed,10u>,array<ap_fixed<16,2,5,3,0>,10u>,relu_config5>' to 'relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_s'.
-WARNING: [SYN 201-103] Legalizing function name 'dense<array,array<ap_fixed<12,6,5,3,0>,1u>,config7>_Pipeline_DataPrepare' to 'dense_array_array_ap_fixed_12_6_5_3_0_1u_config7_Pipeline_DataPrepare'.
-WARNING: [SYN 201-103] Legalizing function name 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<12, 6, 5, 3, 0>, config7>' to 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_12_6_5_3_0_config7_s'.
-WARNING: [SYN 201-103] Legalizing function name 'dense_latency_wrapper<ap_fixed,ap_fixed<12,6,5,3,0>,config7>' to 'dense_latency_wrapper_ap_fixed_ap_fixed_12_6_5_3_0_config7_s'.
-WARNING: [SYN 201-103] Legalizing function name 'dense<array<ap_fixed,10u>,array<ap_fixed<12,6,5,3,0>,1u>,config7>' to 'dense_array_ap_fixed_10u_array_ap_fixed_12_6_5_3_0_1u_config7_s'.
-WARNING: [SYN 201-103] Legalizing function name 'sigmoid<array,array<ap_fixed<16,2,5,3,0>,1u>,sigmoid_config8>' to 'sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s'.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'shift_line_buffer<array<ap_fixed<16, 2, 5, 3, 0>, 1u>, config2>'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 1, Depth = 1, function 'shift_line_buffer<array<ap_fixed<16, 2, 5, 3, 0>, 1u>, config2>'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 17.25 seconds. CPU system time: 0.05 seconds. Elapsed time: 17.35 seconds; current allocated memory: 935.969 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 936.219 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config2_mult>'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 8, Depth = 9, function 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config2_mult>'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.85 seconds. CPU system time: 0 seconds. Elapsed time: 2.86 seconds; current allocated memory: 963.375 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Starting global binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 1.64 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.64 seconds; current allocated memory: 966.891 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'compute_output_buffer_2d_array_array_ap_fixed_14_2_5_3_0_20u_config2_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'compute_output_buffer_2d<array,array<ap_fixed<14,2,5,3,0>,20u>,config2>'.
-WARNING: [HLS 200-880] The II Violation in module 'compute_output_buffer_2d_array_array_ap_fixed_14_2_5_3_0_20u_config2_s' (function 'compute_output_buffer_2d<array,array<ap_fixed<14,2,5,3,0>,20u>,config2>'): Unable to enforce a carried dependence constraint (II = 8, distance = 1, offset = 1) between 'call' operation 280 bit ('tmp', firmware/nnet_utils/nnet_conv_stream.h:294) to 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config2_mult>' and 'call' operation 0 bit ('_ln286', firmware/nnet_utils/nnet_conv_stream.h:286) to 'shift_line_buffer<array<ap_fixed<16, 2, 5, 3, 0>, 1u>, config2>'.
-Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-880.html
-WARNING: [HLS 200-880] The II Violation in module 'compute_output_buffer_2d_array_array_ap_fixed_14_2_5_3_0_20u_config2_s' (function 'compute_output_buffer_2d<array,array<ap_fixed<14,2,5,3,0>,20u>,config2>'): Unable to enforce a carried dependence constraint (II = 9, distance = 1, offset = 1) between 'call' operation 280 bit ('tmp', firmware/nnet_utils/nnet_conv_stream.h:294) to 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config2_mult>' and 'call' operation 0 bit ('_ln286', firmware/nnet_utils/nnet_conv_stream.h:286) to 'shift_line_buffer<array<ap_fixed<16, 2, 5, 3, 0>, 1u>, config2>'.
-Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-880.html
-INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 10, Depth = 11, function 'compute_output_buffer_2d<array,array<ap_fixed<14,2,5,3,0>,20u>,config2>'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.19 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.21 seconds; current allocated memory: 968.508 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 968.508 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_14_2_5_3_0_20u_config2_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'ReadInputHeight_ReadInputWidth'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 10, Depth = 12, loop 'ReadInputHeight_ReadInputWidth'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 969.109 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.02 seconds; current allocated memory: 969.109 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'ReLUActLoop'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'ReLUActLoop'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 970.340 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 970.340 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config4_mult>'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 8, Depth = 9, function 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config4_mult>'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 13.35 seconds. CPU system time: 0.04 seconds. Elapsed time: 13.44 seconds; current allocated memory: 1.016 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Starting global binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 12.09 seconds. CPU system time: 0.02 seconds. Elapsed time: 12.16 seconds; current allocated memory: 1.050 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'ReadInputWidth'.
-WARNING: [HLS 200-880] The II Violation in module 'conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_s' (loop 'ReadInputWidth'): Unable to enforce a carried dependence constraint (II = 8, distance = 1, offset = 1) between 'call' operation 140 bit ('tmp', firmware/nnet_utils/nnet_conv_stream.h:365->firmware/nnet_utils/nnet_conv2d_stream.h:33->firmware/nnet_utils/nnet_conv2d_stream.h:75) to 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config4_mult>' and 'store' operation 0 bit ('void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_write_ln172', firmware/nnet_utils/nnet_conv_stream.h:172->firmware/nnet_utils/nnet_conv_stream.h:357->firmware/nnet_utils/nnet_conv2d_stream.h:33->firmware/nnet_utils/nnet_conv2d_stream.h:75) of variable 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_279', firmware/nnet_utils/nnet_conv_stream.h:172->firmware/nnet_utils/nnet_conv_stream.h:357->firmware/nnet_utils/nnet_conv2d_stream.h:33->firmware/nnet_utils/nnet_conv2d_stream.h:75 on static variable 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9'.
-Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-880.html
-WARNING: [HLS 200-880] The II Violation in module 'conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_s' (loop 'ReadInputWidth'): Unable to enforce a carried dependence constraint (II = 9, distance = 1, offset = 1) between 'call' operation 140 bit ('tmp', firmware/nnet_utils/nnet_conv_stream.h:365->firmware/nnet_utils/nnet_conv2d_stream.h:33->firmware/nnet_utils/nnet_conv2d_stream.h:75) to 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config4_mult>' and 'store' operation 0 bit ('void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_write_ln172', firmware/nnet_utils/nnet_conv_stream.h:172->firmware/nnet_utils/nnet_conv_stream.h:357->firmware/nnet_utils/nnet_conv2d_stream.h:33->firmware/nnet_utils/nnet_conv2d_stream.h:75) of variable 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_279', firmware/nnet_utils/nnet_conv_stream.h:172->firmware/nnet_utils/nnet_conv_stream.h:357->firmware/nnet_utils/nnet_conv2d_stream.h:33->firmware/nnet_utils/nnet_conv2d_stream.h:75 on static variable 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9'.
-Resolution: For help on HLS 200-880 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-880.html
-INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 10, Depth = 12, loop 'ReadInputWidth'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.61 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.66 seconds; current allocated memory: 1.050 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.050 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'ReLUActLoop'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'ReLUActLoop'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.09 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.1 seconds; current allocated memory: 1.050 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 1.050 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'dense_array_array_ap_fixed_12_6_5_3_0_1u_config7_Pipeline_DataPrepare' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'DataPrepare'.
-INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'DataPrepare'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 6.78 seconds. CPU system time: 0.02 seconds. Elapsed time: 6.83 seconds; current allocated memory: 1.110 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.87 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.89 seconds; current allocated memory: 1.125 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_12_6_5_3_0_config7_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<12, 6, 5, 3, 0>, config7>'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 8, Depth = 10, function 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<12, 6, 5, 3, 0>, config7>'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 100.71 seconds. CPU system time: 0.09 seconds. Elapsed time: 101.07 seconds; current allocated memory: 1.235 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Starting global binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 28.44 seconds. CPU system time: 0.06 seconds. Elapsed time: 28.6 seconds; current allocated memory: 1.277 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'dense_latency_wrapper_ap_fixed_ap_fixed_12_6_5_3_0_config7_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'dense_latency_wrapper<ap_fixed,ap_fixed<12,6,5,3,0>,config7>'.
-INFO: [HLS 200-1470] Pipelining result : Target II = 8, Final II = 8, Depth = 10, function 'dense_latency_wrapper<ap_fixed,ap_fixed<12,6,5,3,0>,config7>'
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.48 seconds. CPU system time: 0.04 seconds. Elapsed time: 1.52 seconds; current allocated memory: 1.287 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.39 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.41 seconds; current allocated memory: 1.305 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'dense_array_ap_fixed_10u_array_ap_fixed_12_6_5_3_0_1u_config7_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 12.78 seconds. CPU system time: 0.03 seconds. Elapsed time: 12.85 seconds; current allocated memory: 1.339 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 1.61 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.64 seconds; current allocated memory: 1.339 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.39 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.41 seconds; current allocated memory: 1.340 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.340 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'hls_cnn_2d_100s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-WARNING: [HLS 200-1018] Consider increasing the depth of FIFO layer7_out (from dense_array_ap_fixed_10u_array_ap_fixed_12_6_5_3_0_1u_config7_U0 to sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_U0) to 2 to improve performance and/or avoid deadlocks.
-INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.340 GB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111] Finished Binding: CPU user time: 0.13 seconds. CPU system time: 0 seconds. Elapsed time: 0.13 seconds; current allocated memory: 1.341 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s_void_conv_2d_buffer_latency_cl_stream_stream_weight_t_bias_t_line_buffer_2_SHIFTREG_AUTO_0R0W' to 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s_void_conv_2d_buffer_bkb' due to the length limit 80
-INFO: [SYN 201-210] Renamed object name 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s_void_conv_2d_buffer_latency_cl_stream_stream_weight_t_bias_t_line_buffer_1_SHIFTREG_AUTO_0R0W' to 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s_void_conv_2d_buffer_cud' due to the length limit 80
-INFO: [SYN 201-210] Renamed object name 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s_void_conv_2d_buffer_latency_cl_stream_stream_weight_t_bias_t_line_buffer_SHIFTREG_AUTO_0R0W' to 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s_void_conv_2d_buffer_dEe' due to the length limit 80
-INFO: [RTGEN 206-100] Finished creating RTL model for 'shift_line_buffer_array_ap_fixed_16_2_5_3_0_1u_config2_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.29 seconds. CPU system time: 0 seconds. Elapsed time: 0.3 seconds; current allocated memory: 1.341 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s' pipeline 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config2_mult>' pipeline type 'function pipeline'
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_13ns_29_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_13s_28_1_1': 2 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_13s_29_1_1': 10 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_14s_29_1_1': 27 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_14s_30_1_1': 23 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_15s_30_1_1': 33 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_16s_30_1_1': 4 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.31 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.34 seconds; current allocated memory: 1.366 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'compute_output_buffer_2d_array_array_ap_fixed_14_2_5_3_0_20u_config2_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_8' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_9' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_28' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_29' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_18' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_19' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_8' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_9' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_7' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_27' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_17' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_7' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_6' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_26' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_16' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_6' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_5' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_25' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_15' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_5' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_4' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_24' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_14' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_4' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_3' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_23' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_13' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_3' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_2' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_22' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_12' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_2' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_1' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_21' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_11' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_1' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_20' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_10' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_2dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'sX' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'sY' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'pY' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'pX' is power-on initialization.
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'compute_output_buffer_2d_array_array_ap_fixed_14_2_5_3_0_20u_config2_s' pipeline 'compute_output_buffer_2d<array,array<ap_fixed<14,2,5,3,0>,20u>,config2>' pipeline type 'function pipeline'
-INFO: [RTGEN 206-104] Estimated max fanout for 'compute_output_buffer_2d_array_array_ap_fixed_14_2_5_3_0_20u_config2_s' is 15894 from HDL expression: ((1'b1 == ap_ce) & (((1'b0 == ap_block_pp0_stage9_11001_ignoreCallOp58) & (1'b1 == ap_CS_fsm_pp0_stage9)) | ((1'b0 == ap_block_pp0_stage8_11001_ignoreCallOp57) & (1'b1 == ap_CS_fsm_pp0_stage8)) | ((1'b0 == ap_block_pp0_stage7_11001_ignoreCallOp56) & (1'b1 == ap_CS_fsm_pp0_stage7)) | ((1'b0 == ap_block_pp0_stage6_11001_ignoreCallOp55) & (1'b1 == ap_CS_fsm_pp0_stage6)) | ((1'b0 == ap_block_pp0_stage5_11001_ignoreCallOp54) & (1'b1 == ap_CS_fsm_pp0_stage5)) | ((1'b0 == ap_block_pp0_stage4_11001_ignoreCallOp53) & (1'b1 == ap_CS_fsm_pp0_stage4)) | ((1'b0 == ap_block_pp0_stage3_11001_ignoreCallOp52) & (1'b1 == ap_CS_fsm_pp0_stage3)) | ((1'b0 == ap_block_pp0_stage2_11001_ignoreCallOp51) & (1'b1 == ap_CS_fsm_pp0_stage2)) | ((1'b0 == ap_block_pp0_stage1_11001_ignoreCallOp47) & (1'b1 == ap_CS_fsm_pp0_stage1))))
-INFO: [RTGEN 206-100] Finished creating RTL model for 'compute_output_buffer_2d_array_array_ap_fixed_14_2_5_3_0_20u_config2_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.76 seconds. CPU system time: 0.07 seconds. Elapsed time: 0.85 seconds; current allocated memory: 1.444 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_14_2_5_3_0_20u_config2_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_14_2_5_3_0_20u_config2_s' pipeline 'ReadInputHeight_ReadInputWidth' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-104] Estimated max fanout for 'conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_14_2_5_3_0_20u_config2_s' is 16547 from HDL expression: (((1'b0 == ap_block_pp0_stage0_11001_ignoreCallOp35) & (1'b1 == ap_CS_fsm_pp0_stage0)) | ((1'b0 == ap_block_pp0_stage9_11001_ignoreCallOp34) & (1'b1 == ap_CS_fsm_pp0_stage9)) | ((1'b0 == ap_block_pp0_stage8_11001_ignoreCallOp33) & (1'b1 == ap_CS_fsm_pp0_stage8)) | ((1'b0 == ap_block_pp0_stage7_11001_ignoreCallOp32) & (1'b1 == ap_CS_fsm_pp0_stage7)) | ((1'b0 == ap_block_pp0_stage6_11001_ignoreCallOp31) & (1'b1 == ap_CS_fsm_pp0_stage6)) | ((1'b0 == ap_block_pp0_stage5_11001_ignoreCallOp30) & (1'b1 == ap_CS_fsm_pp0_stage5)) | ((1'b0 == ap_block_pp0_stage4_11001_ignoreCallOp29) & (1'b1 == ap_CS_fsm_pp0_stage4)) | ((1'b0 == ap_block_pp0_stage3_11001_ignoreCallOp28) & (1'b1 == ap_CS_fsm_pp0_stage3)) | ((1'b0 == ap_block_pp0_stage2_11001_ignoreCallOp27) & (1'b1 == ap_CS_fsm_pp0_stage2)) | ((1'b0 == ap_block_pp0_stage1_11001_ignoreCallOp26) & (1'b1 == ap_CS_fsm_pp0_stage1)))
-INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_14_2_5_3_0_20u_config2_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 1.451 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_s' pipeline 'ReLUActLoop' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.453 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s' pipeline 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<14, 2, 5, 3, 0>, config4_mult>' pipeline type 'function pipeline'
-INFO: [RTGEN 206-104] Estimated max fanout for 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s' is 6518 from HDL expression: ((1'b0 == ap_block_pp0_stage0) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_13s_28_1_1': 3 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_13s_29_1_1': 3 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_14ns_30_1_1': 3 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_14s_29_1_1': 54 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_14s_30_1_1': 63 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_15s_30_1_1': 117 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_16s_30_1_1': 7 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.76 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.79 seconds; current allocated memory: 1.504 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_79' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_78' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_77' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_76' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_75' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_74' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_73' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_72' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_71' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_70' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_69' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_189' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_68' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_200' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_67' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_211' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_66' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_222' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_65' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_233' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_64' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_244' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_63' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_255' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_62' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_266' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_61' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_277' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_60' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_90' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_59' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_58' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_57' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_56' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_55' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_54' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_53' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_52' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_51' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_50' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_49' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_48' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_47' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_46' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_45' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_44' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_43' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_42' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_41' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_40' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_39' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_38' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_37' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_36' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_35' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_34' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_33' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_32' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_31' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_30' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_29' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_28' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_27' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_26' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_25' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_24' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_23' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_22' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_21' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_20' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_19' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_18' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_17' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_16' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_15' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_14' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_13' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_12' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_11' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_10' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_9' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_8' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_7' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_6' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_5' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_4' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_3' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_2' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_1' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_190' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_191' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_192' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_193' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_194' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_195' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_196' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_197' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_198' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_199' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_201' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_202' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_203' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_204' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_205' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_206' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_207' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_208' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_209' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_210' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_212' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_213' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_214' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_215' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_216' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_217' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_218' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_219' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_220' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_221' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_223' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_224' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_225' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_226' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_227' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_228' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_229' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_230' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_231' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_232' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_234' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_235' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_236' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_237' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_238' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_239' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_240' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_241' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_242' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_243' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_245' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_246' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_247' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_248' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_249' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_250' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_251' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_252' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_253' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_254' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_256' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_257' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_258' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_259' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_260' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_261' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_262' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_263' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_264' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_265' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_267' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_268' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_269' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_270' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_271' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_272' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_273' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_274' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_275' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_276' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_278' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_99' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_98' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_97' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_96' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_95' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_94' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_93' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_92' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_91' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_89' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_88' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_87' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_86' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_85' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_84' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_83' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_82' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_81' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi2EL9ap_q_mode5EL9_80' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'sX_1' is power-on initialization.
-WARNING: [RTGEN 206-101] Register 'pX_1' is power-on initialization.
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_s' pipeline 'ReadInputWidth' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-104] Estimated max fanout for 'conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_s' is 39235 from HDL expression: (((1'b0 == ap_block_pp0_stage0_11001_ignoreCallOp455) & (1'b1 == ap_CS_fsm_pp0_stage0)) | ((1'b0 == ap_block_pp0_stage9_11001_ignoreCallOp454) & (1'b1 == ap_CS_fsm_pp0_stage9)) | ((1'b0 == ap_block_pp0_stage8_11001_ignoreCallOp453) & (1'b1 == ap_CS_fsm_pp0_stage8)) | ((1'b0 == ap_block_pp0_stage7_11001_ignoreCallOp452) & (1'b1 == ap_CS_fsm_pp0_stage7)) | ((1'b0 == ap_block_pp0_stage6_11001_ignoreCallOp451) & (1'b1 == ap_CS_fsm_pp0_stage6)) | ((1'b0 == ap_block_pp0_stage5_11001_ignoreCallOp450) & (1'b1 == ap_CS_fsm_pp0_stage5)) | ((1'b0 == ap_block_pp0_stage4_11001_ignoreCallOp449) & (1'b1 == ap_CS_fsm_pp0_stage4)) | ((1'b0 == ap_block_pp0_stage3_11001_ignoreCallOp448) & (1'b1 == ap_CS_fsm_pp0_stage3)) | ((1'b0 == ap_block_pp0_stage2_11001_ignoreCallOp447) & (1'b1 == ap_CS_fsm_pp0_stage2)))
-INFO: [RTGEN 206-100] Finished creating RTL model for 'conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.86 seconds. CPU system time: 0.19 seconds. Elapsed time: 3.13 seconds; current allocated memory: 1.638 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_s' pipeline 'ReLUActLoop' pipeline type 'loop pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.2 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.23 seconds; current allocated memory: 1.649 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'dense_array_array_ap_fixed_12_6_5_3_0_1u_config7_Pipeline_DataPrepare' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'dense_array_array_ap_fixed_12_6_5_3_0_1u_config7_Pipeline_DataPrepare' pipeline 'DataPrepare' pipeline type 'loop pipeline'
-INFO: [HLS 200-1553] Disabling free running pipeline (frp) architecture on pipeline 'DataPrepare' in module 'dense_array_array_ap_fixed_12_6_5_3_0_1u_config7_Pipeline_DataPrepare', because the estimated Stream Port Number is 155, which is bigger than the frp_stream_port_number threshold of 20.
-Resolution: For help on HLS 200-1553 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-1553.html
-INFO: [RTGEN 206-104] Estimated max fanout for 'dense_array_array_ap_fixed_12_6_5_3_0_1u_config7_Pipeline_DataPrepare' is 38080 from HDL expression: ((icmp_ln33_fu_31500_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_01001) & (1'b1 == ap_CS_fsm_pp0_stage0))
-INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_array_array_ap_fixed_12_6_5_3_0_1u_config7_Pipeline_DataPrepare'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.99 seconds. CPU system time: 0.04 seconds. Elapsed time: 1.06 seconds; current allocated memory: 1.720 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_12_6_5_3_0_config7_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_12_6_5_3_0_config7_s' pipeline 'dense_latency<ap_fixed<16, 2, 5, 3, 0>, ap_fixed<12, 6, 5, 3, 0>, config7>' pipeline type 'function pipeline'
-INFO: [RTGEN 206-104] Estimated max fanout for 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_12_6_5_3_0_config7_s' is 33535 from HDL expression: ((1'b0 == ap_block_pp0_stage0_11001) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_13ns_29_1_1': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_13s_28_1_1': 6 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_13s_29_1_1': 32 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_14ns_30_1_1': 2 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_14s_29_1_1': 80 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_14s_30_1_1': 17 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_15s_30_1_1': 147 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_15s_31_1_1': 2 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'mul_16s_16s_31_1_1': 11 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_12_6_5_3_0_config7_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.55 seconds. CPU system time: 0.15 seconds. Elapsed time: 2.71 seconds; current allocated memory: 1.929 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'dense_latency_wrapper_ap_fixed_ap_fixed_12_6_5_3_0_config7_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'dense_latency_wrapper_ap_fixed_ap_fixed_12_6_5_3_0_config7_s' pipeline 'dense_latency_wrapper<ap_fixed,ap_fixed<12,6,5,3,0>,config7>' pipeline type 'function pipeline'
-INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_latency_wrapper_ap_fixed_ap_fixed_12_6_5_3_0_config7_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 4.2 seconds. CPU system time: 0.27 seconds. Elapsed time: 4.5 seconds; current allocated memory: 2.184 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'dense_array_ap_fixed_10u_array_ap_fixed_12_6_5_3_0_1u_config7_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_array_ap_fixed_10u_array_ap_fixed_12_6_5_3_0_1u_config7_s'.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1.19 seconds. CPU system time: 0.14 seconds. Elapsed time: 1.34 seconds; current allocated memory: 2.276 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s_sigmoid_table_ROM_AUTO_1R' to 'sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s_sigmoid_table_ROeOg' due to the length limit 80
-INFO: [RTGEN 206-100] Finished creating RTL model for 'sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s'.
-INFO: [RTMG 210-279] Implementing memory 'hls_cnn_2d_100s_sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s_sigmoid_table_ROeOg' using auto ROMs.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.67 seconds. CPU system time: 0.04 seconds. Elapsed time: 0.71 seconds; current allocated memory: 2.338 GB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'hls_cnn_2d_100s' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
-INFO: [RTGEN 206-500] Setting interface mode on port 'hls_cnn_2d_100s/input_1' to 'axis' (register, both mode).
-INFO: [RTGEN 206-500] Setting interface mode on port 'hls_cnn_2d_100s/layer8_out' to 'axis' (register, both mode).
-INFO: [RTGEN 206-500] Setting interface mode on function 'hls_cnn_2d_100s' to 'ap_ctrl_hs'.
-WARNING: [HLS 200-656] Deadlocks can occur since process conv_2d_cl<array<ap_fixed,1u>,array<ap_fixed<14,2,5,3,0>,20u>,config2> is instantiated in a dataflow region with ap_ctrl_none or without start propagation and contains an auto-rewind pipeline.
-Resolution: For help on HLS 200-656 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2023.2%20English&url=ug1448-hls-guidance&resourceid=200-656.html
-INFO: [SYN 201-210] Renamed object name 'start_for_conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4_U0' to 'start_for_conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4fYi' due to the length limit 80
-INFO: [RTGEN 206-100] Finished creating RTL model for 'hls_cnn_2d_100s'.
-INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_U(hls_cnn_2d_100s_fifo_w280_d247_A)' using Vivado Default RAMs.
-INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_U(hls_cnn_2d_100s_fifo_w320_d247_A)' using Vivado Default RAMs.
-INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_U(hls_cnn_2d_100s_fifo_w140_d238_A)' using Vivado Default RAMs.
-INFO: [RTMG 210-285] Implementing FIFO 'layer5_out_U(hls_cnn_2d_100s_fifo_w160_d238_A)' using Vivado Default RAMs.
-INFO: [RTMG 210-285] Implementing FIFO 'layer7_out_U(hls_cnn_2d_100s_fifo_w12_d1_S)' using Shift Registers.
-INFO: [RTMG 210-285] Implementing FIFO 'start_for_relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_U0_U(hls_cnn_2d_100s_start_for_relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_U0)' using Shift Registers.
-INFO: [RTMG 210-285] Implementing FIFO 'start_for_conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4fYi_U(hls_cnn_2d_100s_start_for_conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_14_2_5_3_0_10u_config4fYi)' using Shift Registers.
-INFO: [RTMG 210-285] Implementing FIFO 'start_for_relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_U0_U(hls_cnn_2d_100s_start_for_relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_U0)' using Shift Registers.
-INFO: [RTMG 210-285] Implementing FIFO 'start_for_dense_array_ap_fixed_10u_array_ap_fixed_12_6_5_3_0_1u_config7_U0_U(hls_cnn_2d_100s_start_for_dense_array_ap_fixed_10u_array_ap_fixed_12_6_5_3_0_1u_config7_U0)' using Shift Registers.
-INFO: [RTMG 210-285] Implementing FIFO 'start_for_sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_U0_U(hls_cnn_2d_100s_start_for_sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_U0)' using Shift Registers.
-INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.16 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.18 seconds; current allocated memory: 2.388 GB.
-INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.03 seconds; current allocated memory: 2.389 GB.
-INFO: [HLS 200-111] Finished Updating report files: CPU user time: 2.54 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.6 seconds; current allocated memory: 2.465 GB.
-INFO: [VHDL 208-304] Generating VHDL RTL for hls_cnn_2d_100s.
-INFO: [VLOG 209-307] Generating Verilog RTL for hls_cnn_2d_100s.
-INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
-INFO: [HLS 200-789] **** Estimated Fmax: 287.28 MHz
-INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 399.11 seconds. CPU system time: 3.12 seconds. Elapsed time: 404.41 seconds; current allocated memory: 2.254 GB.
-***** C/RTL SYNTHESIS COMPLETED IN 0h6m44s *****
-***** EXPORT IP *****
-INFO: [HLS 200-1510] Running: export_design -format ip_catalog -version 1.0.0 
-INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
-
-****** Vivado v2023.2 (64-bit)
-  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-WARNING: [Runs 36-547] User Strategy 'Vivado Implementation Defaults' from file '/home/work1/.Xilinx/Vivado/2023.2/strategies/Vivado Implementation Defaults.Vivado Implementation 2020.psg' discarded because strategy with same name already parsed from '/home/work1/Apps/Vivado/2023.2/strategies/VDI2020.psg'
-WARNING: [Runs 36-547] User Strategy 'Vivado Synthesis Defaults' from file '/home/work1/.Xilinx/Vivado/2023.2/strategies/Vivado Synthesis Defaults.Vivado Synthesis 2020.psg' discarded because strategy with same name already parsed from '/home/work1/Apps/Vivado/2023.2/strategies/VDS2020.psg'
-source run_ippack.tcl -notrace
-INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/work1/Apps/Vivado/2023.2/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Mon Oct 13 18:20:05 2025...
-INFO: [HLS 200-802] Generated output file hls_cnn_2d_100s_prj/solution1/impl/export.zip
-INFO: [HLS 200-111] Finished Command export_design CPU user time: 34.95 seconds. CPU system time: 1.04 seconds. Elapsed time: 45.53 seconds; current allocated memory: 19.953 MB.
-***** EXPORT IP COMPLETED IN 0h0m45s *****
-***** VIVADO SYNTHESIS *****
-
-****** Vivado v2023.2 (64-bit)
-  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Mon Oct 13 18:20:16 2025
+# Process ID: 142361
+# Current directory: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s
+# Command line: vivado -mode batch -source vivado_synth.tcl
+# Log file: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/vivado.log
+# Journal file: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/vivado.jou
+# Running On: dhcp-172-31-232-100.mobile.uci.edu, OS: Linux, CPU Frequency: 797.506 MHz, CPU Physical cores: 24, Host memory: 16427 MB
+#-----------------------------------------------------------
 WARNING: [Runs 36-547] User Strategy 'Vivado Implementation Defaults' from file '/home/work1/.Xilinx/Vivado/2023.2/strategies/Vivado Implementation Defaults.Vivado Implementation 2020.psg' discarded because strategy with same name already parsed from '/home/work1/Apps/Vivado/2023.2/strategies/VDI2020.psg'
 WARNING: [Runs 36-547] User Strategy 'Vivado Synthesis Defaults' from file '/home/work1/.Xilinx/Vivado/2023.2/strategies/Vivado Synthesis Defaults.Vivado Synthesis 2020.psg' discarded because strategy with same name already parsed from '/home/work1/Apps/Vivado/2023.2/strategies/VDS2020.psg'
 source vivado_synth.tcl
@@ -4567,6 +3734,120 @@ Finished Synthesize : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB
 ---------------------------------------------------------------------------------
 Finished Constraint Validation : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2835.543 ; gain = 1319.004 ; free physical = 391 ; free virtual = 18384
 ---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcku5p-ffvb676-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+INFO: [Device 21-403] Loading part xcku5p-ffvb676-2-e
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2855.469 ; gain = 1338.930 ; free physical = 388 ; free virtual = 18382
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_930_reg_127813_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6389]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_929_reg_127805_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6388]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_992_reg_128549_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6521]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_991_reg_128541_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6520]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1058_reg_129339_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6681]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1057_reg_129333_reg' and it is trimmed from '30' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6680]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1054_reg_129328_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6679]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1094_reg_129787_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6774]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1092_reg_129780_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6773]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1000_reg_127230_reg' and it is trimmed from '23' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6330]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1002_reg_127235_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6331]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1008_reg_127253_reg' and it is trimmed from '24' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6332]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1012_reg_127266_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6333]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1043_reg_127308_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6334]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1084_reg_127390_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6335]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1088_reg_127396_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6336]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1091_reg_127418_reg' and it is trimmed from '25' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6337]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1103_reg_127448_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6338]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1107_reg_127453_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6339]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1110_reg_127468_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6340]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1112_reg_127475_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6341]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_907_reg_127069_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6342]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_928_reg_127102_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6343]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_939_reg_127123_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6344]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_950_reg_127153_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6345]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_982_reg_127176_reg' and it is trimmed from '26' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6346]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_986_reg_127182_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6347]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_993_reg_127212_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6348]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1028_reg_128944_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6591]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_1029_reg_128953_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6592]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_956_reg_128086_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6452]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_959_reg_128091_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config2_mult_s.vhd:6453]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_99_reg_723698_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16079]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_96_reg_723692_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16078]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_94_reg_723673_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16077]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_90_reg_723655_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16076]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_8_reg_723328_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16075]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_84_reg_723636_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16074]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_82_reg_723626_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16073]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_81_reg_723621_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16072]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_75_reg_723607_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16071]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_71_reg_723594_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16070]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_69_reg_723587_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16069]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_66_reg_723573_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16068]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_60_reg_723555_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16067]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_5_reg_723322_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16066]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_59_reg_723550_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16065]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_56_reg_723537_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16064]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_51_reg_723503_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16063]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_46_reg_723493_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16062]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_40_reg_723478_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16061]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_39_reg_723472_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16060]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_37_reg_723447_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16059]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_35_reg_723441_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16058]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_29_reg_723413_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16057]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_268_reg_724302_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16055]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_262_reg_724285_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16054]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_260_reg_724279_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16053]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_256_reg_724263_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16052]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_255_reg_724258_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16051]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_253_reg_724235_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16050]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_24_reg_723397_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16049]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_249_reg_724224_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16048]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_248_reg_724216_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16047]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_245_reg_724198_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16046]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_241_reg_724180_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16045]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_240_reg_724175_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16044]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_234_reg_724159_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16043]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_231_reg_724144_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16042]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_226_reg_724128_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16041]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_225_reg_724121_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16040]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_221_reg_724106_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16039]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_218_reg_724094_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16038]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_217_reg_724088_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16037]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_215_reg_724083_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16036]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_210_reg_724061_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16035]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_209_reg_724056_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16034]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_203_reg_724033_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16033]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_198_reg_724005_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16032]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_194_reg_723987_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16031]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_18_reg_723381_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16030]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_188_reg_723970_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16029]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_182_reg_723953_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16028]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_178_reg_723941_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16027]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_16_reg_723360_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16026]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_166_reg_723909_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16025]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_165_reg_723904_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16024]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_149_reg_723870_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16023]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_148_reg_723858_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16022]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_146_reg_723852_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16021]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_144_reg_723847_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16020]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_137_reg_723833_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16019]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_135_reg_723817_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16018]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_132_reg_723812_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16017]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_131_reg_723802_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16016]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_127_reg_723792_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16015]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_125_reg_723787_reg' and it is trimmed from '27' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16014]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_122_reg_723776_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16013]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_116_reg_723765_reg' and it is trimmed from '28' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16012]
+WARNING: [Synth 8-3936] Found unconnected internal register 'sext_ln70_111_reg_723744_reg' and it is trimmed from '29' to '16' bits. [/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/syn/vhdl/hls_cnn_2d_100s_dense_latency_ap_fixed_16_2_5_3_0_ap_fixed_14_2_5_3_0_config4_mult_s.vhd:16011]
+INFO: [Common 17-14] Message 'Synth 8-3936' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
@@ -4575,214 +3856,6 @@ INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' throug
 ---------------------------------------------------------------------------------
 Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:56 ; elapsed = 00:00:56 . Memory (MB): peak = 3560.016 ; gain = 2043.477 ; free physical = 169 ; free virtual = 10526
 ---------------------------------------------------------------------------------
-# Minor page faults: 704628 Major page faults: 28513
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 704981 Major page faults: 28528
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 704984 Major page faults: 28528
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 704985 Major page faults: 28529
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 704985 Major page faults: 28529
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705020 Major page faults: 28572
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28576
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705027 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705200 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705200 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705200 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705200 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705200 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705249 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705281 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705281 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705281 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705281 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705281 Major page faults: 28577
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705282 Major page faults: 28593
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705365 Major page faults: 28618
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705377 Major page faults: 28621
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705377 Major page faults: 28621
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705377 Major page faults: 28621
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705378 Major page faults: 28625
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705378 Major page faults: 28625
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28625
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28625
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28625
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28625
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
-# Minor page faults: 705379 Major page faults: 28628
-# Thrashing Detected!
-# Process may be trying to use more memory than is available
-# (memory might be consumed by other processes or file cache).
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -9144,6 +8217,3 @@ INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 6
 INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 19558.805; main = 4147.340; forked = 15740.379
 # report_utilization -file vivado_synth.rpt
 INFO: [Common 17-206] Exiting Vivado at Mon Oct 13 18:23:57 2025...
-***** VIVADO SYNTHESIS COMPLETED IN 0h3m55s *****
-INFO: [HLS 200-112] Total CPU user time: 649.11 seconds. Total CPU system time: 12.96 seconds. Total elapsed time: 693.05 seconds; peak allocated memory: 2.485 GB.
-INFO: [Common 17-206] Exiting vitis_hls at Mon Oct 13 18:24:17 2025...

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "abs_data_vs_y_keras.C": "cpp",
-        "plot_error_analysis.C": "cpp"
+        "plot_error_analysis.C": "cpp",
+        "sstream": "cpp"
     }
 }
