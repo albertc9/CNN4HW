@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Oct 15 14:57:22 2025
+# Process ID: 2369813
+# Current directory: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1
+# Command line: vivado -mode batch -source /proc/self/fd/11
+# Log file: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/vivado.log
+# Journal file: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/vivado.jou
+# Running On: dhcp-172-31-205-022.mobile.uci.edu, OS: Linux, CPU Frequency: 2909.969 MHz, CPU Physical cores: 24, Host memory: 16427 MB
+#-----------------------------------------------------------
+source /proc/self/fd/11

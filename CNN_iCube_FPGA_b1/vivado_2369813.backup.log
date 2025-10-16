@@ -1,0 +1,17 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Oct 15 14:57:22 2025
+# Process ID: 2369813
+# Current directory: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1
+# Command line: vivado -mode batch -source /proc/self/fd/11
+# Log file: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/vivado.log
+# Journal file: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/vivado.jou
+# Running On: dhcp-172-31-205-022.mobile.uci.edu, OS: Linux, CPU Frequency: 2909.969 MHz, CPU Physical cores: 24, Host memory: 16427 MB
+#-----------------------------------------------------------
+WARNING: [Runs 36-547] User Strategy 'Vivado Implementation Defaults' from file '/home/work1/.Xilinx/Vivado/2023.2/strategies/Vivado Implementation Defaults.Vivado Implementation 2020.psg' discarded because strategy with same name already parsed from '/home/work1/Apps/Vivado/2023.2/strategies/VDI2020.psg'
+WARNING: [Runs 36-547] User Strategy 'Vivado Synthesis Defaults' from file '/home/work1/.Xilinx/Vivado/2023.2/strategies/Vivado Synthesis Defaults.Vivado Synthesis 2020.psg' discarded because strategy with same name already parsed from '/home/work1/Apps/Vivado/2023.2/strategies/VDS2020.psg'
+source /proc/self/fd/11
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 15 14:57:25 2025...

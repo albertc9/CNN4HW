@@ -4,7 +4,7 @@
     "xci_name": "hls_cnn_2d_100s_0",
     "component_reference": "xilinx.com:hls:hls_cnn_2d_100s:1.0",
     "ip_revision": "0",
-    "gen_directory": "../../../../CNN_iCube_FPGA_b1.gen/sources_1/ip/hls_cnn_2d_100s_0",
+    "gen_directory": "../../../../CNN_iCube_FPGA_b1.gen/sources_1/ip/hls_cnn_2d_100s_0_1",
     "parameters": {
       "component_parameters": {
         "Component_Name": [ { "value": "hls_cnn_2d_100s_0", "resolve_type": "user", "usage": "all" } ],
@@ -31,7 +31,7 @@
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
         "IPREVISION": [ { "value": "0" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../CNN_iCube_FPGA_b1.gen/sources_1/ip/hls_cnn_2d_100s_0" } ],
+        "OUTPUTDIR": [ { "value": "../../../../CNN_iCube_FPGA_b1.gen/sources_1/ip/hls_cnn_2d_100s_0_1" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
         "SWVERSION": [ { "value": "2023.2" } ],
@@ -61,7 +61,7 @@
           "parameters": {
             "TDATA_NUM_BYTES": [ { "value": "2", "value_src": "constant", "usage": "all" } ],
             "TUSER_WIDTH": [ { "value": "0", "value_src": "constant", "usage": "all" } ],
-            "LAYERED_METADATA": [ { "value": "", "value_src": "constant", "resolve_type": "generated", "usage": "all" } ],
+            "LAYERED_METADATA": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
             "TDEST_WIDTH": [ { "value": "0", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TID_WIDTH": [ { "value": "0", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "HAS_TREADY": [ { "value": "1", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
@@ -86,7 +86,7 @@
           "parameters": {
             "TDATA_NUM_BYTES": [ { "value": "2", "value_src": "constant", "usage": "all" } ],
             "TUSER_WIDTH": [ { "value": "0", "value_src": "constant", "usage": "all" } ],
-            "LAYERED_METADATA": [ { "value": "", "value_src": "constant", "resolve_type": "generated", "usage": "all" } ],
+            "LAYERED_METADATA": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
             "TDEST_WIDTH": [ { "value": "0", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TID_WIDTH": [ { "value": "0", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "HAS_TREADY": [ { "value": "1", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],

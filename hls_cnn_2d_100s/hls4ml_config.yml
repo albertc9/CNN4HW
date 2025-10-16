@@ -8,7 +8,7 @@ HLSConfig:
         bias: ap_fixed<16,2>
         result: ap_fixed<12,2>
         weight: ap_fixed<16,2>
-      ReuseFactor: 8
+      ReuseFactor: 4
       Strategy: Latency
     conv2d_1:
       Precision:
@@ -24,8 +24,8 @@ HLSConfig:
         bias: ap_fixed<16,2>
         result: ap_fixed<10,6>
         weight: ap_fixed<16,2>
-      ReuseFactor: 8
-      Strategy: Latency
+      ReuseFactor: 32
+      Strategy: Resource
   LayerType:
     Activation:
       table_size: 1024
@@ -41,8 +41,8 @@ IOType: io_stream
 InputData: null
 KerasModel: !!python/object/apply:tf_keras.src.saving.pickle_utils.deserialize_model_from_bytecode
 - !!binary |
-  UEsDBBQAAAAAAAAAIQALuTc0QAAAAEAAAAANAAAAbWV0YWRhdGEuanNvbnsia2VyYXNfdmVyc2lv
-  biI6ICIyLjIwLjEiLCAiZGF0ZV9zYXZlZCI6ICIyMDI1LTEwLTEzQDIzOjQ4OjQ0In1QSwMEFAAA
+  UEsDBBQAAAAAAAAAIQAyhv58QAAAAEAAAAANAAAAbWV0YWRhdGEuanNvbnsia2VyYXNfdmVyc2lv
+  biI6ICIyLjIwLjEiLCAiZGF0ZV9zYXZlZCI6ICIyMDI1LTEwLTE0QDE2OjMzOjEzIn1QSwMEFAAA
   AAAAAAAhALpWddyUDAAAlAwAAAsAAABjb25maWcuanNvbnsibW9kdWxlIjogInRmX2tlcmFzLnNy
   Yy5lbmdpbmUuZnVuY3Rpb25hbCIsICJjbGFzc19uYW1lIjogIkZ1bmN0aW9uYWwiLCAiY29uZmln
   IjogeyJuYW1lIjogImNvbnZlcnRlZF9tb2RlbCIsICJ0cmFpbmFibGUiOiB0cnVlLCAibGF5ZXJz
@@ -100,7 +100,7 @@ KerasModel: !!python/object/apply:tf_keras.src.saving.pickle_utils.deserialize_m
   IiwgMCwgMCwge31dXV19XSwgImlucHV0X2xheWVycyI6IFtbImlucHV0XzEiLCAwLCAwXV0sICJv
   dXRwdXRfbGF5ZXJzIjogW1siZGVuc2UiLCAwLCAwXV19LCAicmVnaXN0ZXJlZF9uYW1lIjogIkZ1
   bmN0aW9uYWwiLCAiYnVpbGRfY29uZmlnIjogeyJpbnB1dF9zaGFwZSI6IFtudWxsLCA0LCAyNTYs
-  IDFdfX1QSwMEFAAAAAAAFr5NWx6oAOK8iAAAvIgAABAAAABtb2RlbC53ZWlnaHRzLmg1iUhERg0K
+  IDFdfX1QSwMEFAAAAAAAJoROWx6oAOK8iAAAvIgAABAAAABtb2RlbC53ZWlnaHRzLmg1iUhERg0K
   GgoAAAAAAAgIAAQAEAAAAAAAAAAAAAAAAAD//////////7yIAAAAAAAA//////////8AAAAAAAAA
   AGAAAAAAAAAAAQAAAAAAAACIAAAAAAAAAKgCAAAAAAAAAQABAAEAAAAYAAAAAAAAABEAEAAAAAAA
   iAAAAAAAAACoAgAAAAAAAFRSRUUAAAEA/////////////////////wAAAAAAAAAA4AUAAAAAAAAI
@@ -715,13 +715,13 @@ KerasModel: !!python/object/apply:tf_keras.src.saving.pickle_utils.deserialize_m
   AbiIAAAAAAAABAAAAAAAAAAAAAAAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADKLPS8
-  UEsBAhQDFAAAAAAAAAAhAAu5NzRAAAAAQAAAAA0AAAAAAAAAAAAAAIABAAAAAG1ldGFkYXRhLmpz
+  UEsBAhQDFAAAAAAAAAAhADKG/nxAAAAAQAAAAA0AAAAAAAAAAAAAAIABAAAAAG1ldGFkYXRhLmpz
   b25QSwECFAMUAAAAAAAAACEAulZ13JQMAACUDAAACwAAAAAAAAAAAAAAgAFrAAAAY29uZmlnLmpz
-  b25QSwECFAMUAAAAAAAWvk1bHqgA4ryIAAC8iAAAEAAAAAAAAAAAAAAAgAEoDQAAbW9kZWwud2Vp
+  b25QSwECFAMUAAAAAAAmhE5bHqgA4ryIAAC8iAAAEAAAAAAAAAAAAAAAgAEoDQAAbW9kZWwud2Vp
   Z2h0cy5oNVBLBQYAAAAAAwADALIAAAASlgAAAAA=
 OutputDir: hls_cnn_2d_100s
 OutputPredictions: null
 Part: xcku5p-ffvb676-2-e
 ProjectName: hls_cnn_2d_100s
-Stamp: 7Bca9562
+Stamp: 0cbcEebF
 Version: 1.0.0

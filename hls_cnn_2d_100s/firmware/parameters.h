@@ -28,7 +28,7 @@
 struct config2_mult : nnet::dense_config {
     static const unsigned n_in = 40;
     static const unsigned n_out = 20;
-    static const unsigned reuse_factor = 8;
+    static const unsigned reuse_factor = 4;
     static const unsigned strategy = nnet::latency;
     static const unsigned n_zeros = 0;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
@@ -55,7 +55,7 @@ struct config2 : nnet::conv2d_config {
     static const unsigned stride_width = 1;
     static const unsigned out_height = 1;
     static const unsigned out_width = 247;
-    static const unsigned reuse_factor = 8;
+    static const unsigned reuse_factor = 4;
     static const unsigned n_zeros = 0;
     static const unsigned multiplier_limit =
         DIV_ROUNDUP(kernel_size * n_chan * n_filt, reuse_factor) - n_zeros / reuse_factor;
@@ -159,8 +159,8 @@ struct config7 : nnet::dense_config {
     static const unsigned n_in = 2380;
     static const unsigned n_out = 1;
     static const unsigned io_type = nnet::io_stream;
-    static const unsigned strategy = nnet::latency;
-    static const unsigned reuse_factor = 8;
+    static const unsigned strategy = nnet::resource;
+    static const unsigned reuse_factor = 34;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 2380;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;

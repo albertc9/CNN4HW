@@ -1,0 +1,85 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Oct 15 15:04:22 2025
+# Process ID: 2373372
+# Current directory: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1
+# Command line: vivado
+# Log file: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/vivado.log
+# Journal file: /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/vivado.jou
+# Running On: dhcp-172-31-205-022.mobile.uci.edu, OS: Linux, CPU Frequency: 863.400 MHz, CPU Physical cores: 24, Host memory: 16427 MB
+#-----------------------------------------------------------
+start_gui
+open_project /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source tb_CNN4HW.tcl
+current_wave_config {Untitled 1}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_CS_fsm}} 
+current_wave_config {Untitled 1}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/layer2_out_full_n}} 
+current_wave_config {Untitled 1}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_sig_allocacmp_indvar_flatten_load}} 
+restart
+run 300us
+close_sim
+close_sim
+close_sim -force
+launch_simulation
+source tb_CNN4HW.tcl
+current_wave_config {Untitled 2}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_sig_allocacmp_indvar_flatten_load}} 
+current_wave_config {Untitled 2}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_CS_fsm}} 
+current_wave_config {Untitled 2}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/layer2_out_full_n}} 
+current_wave_config {Untitled 2}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_block_pp0_stage1_subdone}} 
+current_wave_config {Untitled 2}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_condition_exit_pp0_iter0_stage1}} 
+current_wave_config {Untitled 2}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_12_2_5_3_0_20u_config2_s_fu_146_ap_start}} 
+current_wave_config {Untitled 2}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_12_2_5_3_0_20u_config2_s_fu_146_ap_done}} 
+restart
+run 100us
+close_sim
+close_sim -force
+launch_simulation -mode post-synthesis -type functional
+source tb_CNN4HW.tcl
+current_wave_config {Untitled 2}
+Untitled 2
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_sig_allocacmp_indvar_flatten_load}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_sig_allocacmp_indvar_flatten_load}}
+run 100us
+launch_simulation
+source tb_CNN4HW.tcl
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_sig_allocacmp_indvar_flatten_load}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_CS_fsm}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/layer2_out_full_n}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_block_pp0_stage1_subdone}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_condition_exit_pp0_iter0_stage1}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_12_2_5_3_0_20u_config2_s_fu_146_ap_start}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_12_2_5_3_0_20u_config2_s_fu_146_ap_done}}
+run 200us
+restart
+run 200us
+close_sim
+close_sim -force
+launch_simulation
+source tb_CNN4HW.tcl
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_sig_allocacmp_indvar_flatten_load}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_CS_fsm}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/layer2_out_full_n}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_block_pp0_stage1_subdone}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/ap_condition_exit_pp0_iter0_stage1}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_12_2_5_3_0_20u_config2_s_fu_146_ap_start}}
+add_wave {{/tb_CNN4HW/uut/hls_cnn_inst/inst/conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_12_2_5_3_0_20u_config2_s_fu_146_ap_done}}
+restart
+run 200us
+restart
+run 200us
+current_sim simulation_3
+close_sim
