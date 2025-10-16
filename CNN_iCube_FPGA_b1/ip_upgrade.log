@@ -1,0 +1,16 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+| Date         : Thu Oct 16 14:02:34 2025
+| Host         : dhcp-172-31-205-022.mobile.uci.edu running 64-bit unknown
+| Command      : upgrade_ip
+| Device       : xcku5p-ffvb676-2-e
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'hls_cnn_2d_100s_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of hls_cnn_2d_100s_0 (xilinx.com:hls:hls_cnn_2d_100s:1.0) to current project options.
+

@@ -61,7 +61,7 @@
           "parameters": {
             "TDATA_NUM_BYTES": [ { "value": "2", "value_src": "constant", "usage": "all" } ],
             "TUSER_WIDTH": [ { "value": "0", "value_src": "constant", "usage": "all" } ],
-            "LAYERED_METADATA": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
+            "LAYERED_METADATA": [ { "value": "", "value_src": "constant", "resolve_type": "generated", "usage": "all" } ],
             "TDEST_WIDTH": [ { "value": "0", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TID_WIDTH": [ { "value": "0", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "HAS_TREADY": [ { "value": "1", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
@@ -86,7 +86,7 @@
           "parameters": {
             "TDATA_NUM_BYTES": [ { "value": "2", "value_src": "constant", "usage": "all" } ],
             "TUSER_WIDTH": [ { "value": "0", "value_src": "constant", "usage": "all" } ],
-            "LAYERED_METADATA": [ { "value": "", "resolve_type": "generated", "usage": "all" } ],
+            "LAYERED_METADATA": [ { "value": "", "value_src": "constant", "resolve_type": "generated", "usage": "all" } ],
             "TDEST_WIDTH": [ { "value": "0", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "TID_WIDTH": [ { "value": "0", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "HAS_TREADY": [ { "value": "1", "value_src": "constant", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],

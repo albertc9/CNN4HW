@@ -92,20 +92,10 @@ module CNN4HW_TOP #(
     // Control Logic
     //=========================================================================
 
-    // Start pulse handling
-    reg start_r1, start_r2;
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            start_r1 <= 1'b0;
-            start_r2 <= 1'b0;
-        end else begin
-            start_r1 <= start;
-            start_r2 <= start_r1;
-        end
-    end
-
-    // Generate ap_start pulse (rising edge of start signal)
-    assign ap_start = start_r1 & ~start_r2;
+    // Direct connection for ap_start
+    // The HLS IP expects ap_start to be high when starting and can be held high
+    // It will internally generate the necessary control signals
+    assign ap_start = start;
 
     // Output control signals
     assign done  = ap_done;

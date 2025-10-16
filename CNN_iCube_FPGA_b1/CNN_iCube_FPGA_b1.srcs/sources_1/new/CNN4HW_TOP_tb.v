@@ -148,17 +148,21 @@ module CNN4HW_TOP_tb();
             pixel_count = 0;
 
             fork
-                // Input data sender
+                // Input data sender - Proper AXI-Stream handshake protocol
                 begin
-                    for (i = 0; i < IMAGE_SIZE; i = i + 1) begin
+                    i = 0;
+                    while (i < IMAGE_SIZE) begin
                         @(posedge clk);
-                        input_data = test_image[i];
-                        input_valid = 1;
+                        // Present data and assert valid
+                        input_data <= test_image[i];
+                        input_valid <= 1;
 
-                        // Wait for ready handshake
-                        while (!input_ready) @(posedge clk);
+                        // Wait for ready signal (handshake completion)
+                        wait(input_ready);
+                        @(posedge clk); // Data transferred on this clock edge
 
                         pixel_count = pixel_count + 1;
+                        i = i + 1;
 
                         // Progress indicator
                         if (pixel_count % 256 == 0) begin
@@ -166,8 +170,8 @@ module CNN4HW_TOP_tb();
                         end
                     end
 
-                    @(posedge clk);
-                    input_valid = 0;
+                    // Deassert valid after last transfer
+                    input_valid <= 0;
                     $display("[%0t] All %0d pixels sent", $time, IMAGE_SIZE);
                 end
 
@@ -189,12 +193,35 @@ module CNN4HW_TOP_tb();
     endtask
 
     //=========================================================================
-    // Monitor
+    // Monitor - Debug signals
     //=========================================================================
     initial begin
         // Dump waveform for debugging
         $dumpfile("cnn_top_tb.vcd");
         $dumpvars(0, CNN4HW_TOP_tb);
+    end
+
+    // Monitor handshake signals
+    always @(posedge clk) begin
+        if (input_valid && input_ready) begin
+            $display("[%0t] HANDSHAKE: input_data=0x%04h (pixel #%0d)",
+                     $time, input_data, pixel_count + 1);
+        end
+    end
+
+    // Monitor control signals
+    initial begin
+        forever begin
+            @(posedge start);
+            $display("[%0t] DEBUG: start signal asserted", $time);
+        end
+    end
+
+    initial begin
+        forever begin
+            @(posedge dut.ap_start);
+            $display("[%0t] DEBUG: ap_start signal asserted", $time);
+        end
     end
 
     //=========================================================================
