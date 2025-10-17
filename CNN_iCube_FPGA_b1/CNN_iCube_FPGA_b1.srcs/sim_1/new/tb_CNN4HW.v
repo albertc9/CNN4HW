@@ -207,20 +207,41 @@ module tb_CNN4HW;
             end
         end
 
-        // End input transmission - deassert valid AND start
+        // End input transmission - deassert valid but KEEP start HIGH
         @(posedge clk);
         input_valid = 0;
         input_data = 0;
-        start = 0;  // Deassert start AFTER all data sent
-        $display("[%0t ns] All %0d pixels transmitted, START deasserted", $time, pixel_count);
+        // IMPORTANT: Keep start HIGH! Dataflow IP needs start asserted until done.
+        $display("[%0t ns] All %0d pixels transmitted (start kept HIGH for dataflow)", $time, pixel_count);
 
         // Wait for computation to complete
         $display("\n[%0t ns] ========== COMPUTATION PHASE ==========", $time);
-        $display("[%0t ns] Waiting for output_valid...", $time);
+        $display("[%0t ns] Waiting for output or done signal...", $time);
         $display("  (Expected: ~6162 cycles from start)");
+        $display("  Current status: done=%b idle=%b ready=%b", done, idle, ready);
 
-        wait(output_valid == 1);
-        @(posedge clk);
+        // Wait with timeout and periodic status updates
+        i = 0;
+        while (!output_valid && !done && i < 20000) begin
+            @(posedge clk);
+            i = i + 1;
+            // Report every 200 cycles (~1us)
+            if (i % 200 == 0) begin
+                $display("[%0t ns] Still waiting (cycle %0d)... done=%b idle=%b ready=%b output_valid=%b",
+                         $time, i, done, idle, ready, output_valid);
+            end
+        end
+
+        if (!output_valid && !done) begin
+            $display("\n[ERROR] No output or done signal after %0d cycles!", i);
+            $display("  Time elapsed: %0.2f μs", ($time - start_time) / 1000.0);
+            $display("  IP Status: done=%b idle=%b ready=%b", done, idle, ready);
+            $finish;
+        end
+
+        // Now deassert start after done or output appears
+        start = 0;
+        $display("[%0t ns] Done or output detected, deasserting start", $time);
         end_time = $time;
 
         // Calculate latency
@@ -254,12 +275,45 @@ module tb_CNN4HW;
     //========================================================================
     // Monitor
     //========================================================================
+    reg done_prev, idle_prev, ready_prev;
+    reg output_valid_prev;
+
+    initial begin
+        done_prev = 0;
+        idle_prev = 0;
+        ready_prev = 0;
+        output_valid_prev = 0;
+    end
+
     always @(posedge clk) begin
         if (start) begin
             $display("[%0t ns] [MONITOR] start asserted", $time);
         end
         if (input_valid && input_ready) begin
             $display("[%0t ns] [MONITOR] Input handshake: data=0x%04h (pixel #%0d)", $time, input_data, pixel_count);
+        end
+
+        // Monitor IP control signal changes
+        if (done != done_prev) begin
+            $display("[%0t ns] [MONITOR] ap_done changed: %b -> %b", $time, done_prev, done);
+            done_prev = done;
+        end
+        if (idle != idle_prev) begin
+            $display("[%0t ns] [MONITOR] ap_idle changed: %b -> %b", $time, idle_prev, idle);
+            idle_prev = idle;
+        end
+        if (ready != ready_prev) begin
+            $display("[%0t ns] [MONITOR] ap_ready changed: %b -> %b", $time, ready_prev, ready);
+            ready_prev = ready;
+        end
+
+        // Monitor output valid
+        if (output_valid != output_valid_prev) begin
+            $display("[%0t ns] [MONITOR] output_valid changed: %b -> %b", $time, output_valid_prev, output_valid);
+            if (output_valid) begin
+                $display("[%0t ns] [MONITOR] OUTPUT READY! data=0x%04h", $time, output_data);
+            end
+            output_valid_prev = output_valid;
         end
     end
 

@@ -132,3 +132,66 @@ launch_simulation
 source tb_CNN4HW.tcl
 restart
 run 100us
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+close_sim
+refresh_design
+launch_simulation
+source tb_CNN4HW.tcl
+restart
+run 100us
+close_sim
+delete_fileset [ get_filesets sim_2 ]
+file delete -force /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_2
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse -scan_for_includes /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_1/new/tb_CNN4HW_stream.v
+update_compile_order -fileset sim_1
+export_ip_user_files -of_objects  [get_files /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_1/new/tb_CNN4HW_stream.v] -no_script -reset -force -quiet
+remove_files  -fileset sim_1 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_1/new/tb_CNN4HW_stream.v
+create_fileset -simset sim_2
+set_property SOURCE_SET sources_1 [get_filesets sim_2]
+add_files -fileset sim_2 -norecurse -scan_for_includes /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_1/new/tb_CNN4HW_stream.v
+import_files -fileset sim_2 -norecurse /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_1/new/tb_CNN4HW_stream.v
+update_compile_order -fileset sim_2
+current_fileset -simset [ get_filesets sim_2 ]
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_CNN4HW_stream [get_filesets sim_2]
+set_property top_lib xil_defaultlib [get_filesets sim_2]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_2
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+restart
+run 100ms
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+restart
+run 100us
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+restart
+run 100us
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+restart
+rim 100us
+run 100us
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+run 100us
+close_sim
+close_sim -f
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+run 100us
+close_sim
+current_fileset -simset [ get_filesets sim_1 ]
+launch_simulation
+source tb_CNN4HW.tcl
+run 50us

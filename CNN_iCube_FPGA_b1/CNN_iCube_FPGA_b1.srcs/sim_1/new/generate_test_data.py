@@ -89,7 +89,10 @@ def generate_sample_hex(data, sample_idx, output_dir):
 def main():
     # 数据路径
     data_path = "/home/work1/Work/CNN_iCube_FPGA_b/out/X_pkl-filtered_float32_N_4_256_1.npy"
-    output_dir = os.path.dirname(os.path.abspath(__file__))
+    output_dir = "/home/work1/Work/CNN_iCube_FPGA_b/data/testhex"
+
+    # 创建输出目录（如果不存在）
+    os.makedirs(output_dir, exist_ok=True)
 
     # 检查数据文件是否存在
     if not os.path.exists(data_path):
