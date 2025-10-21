@@ -27,3 +27,7 @@ close_sim
 launch_simulation
 source tb_CNN4HW.tcl
 run 50us
+close_sim
+launch_simulation
+source tb_CNN4HW.tcl
+run 50us

@@ -1,7 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// RESTORED VERSION - This was working with start kept HIGH during transmission
-//////////////////////////////////////////////////////////////////////////////////
 
 module tb_CNN4HW;
 
@@ -151,27 +148,24 @@ module tb_CNN4HW;
         end
         $display("[%0t ns] IP is idle, ready to start", $time);
 
-        repeat(3) @(posedge clk);  // Extra cycles for edge detection logic in wrapper
+        repeat(3) @(posedge clk);
 
-        $display("[%0t ns] Asserting START (will keep HIGH during entire transmission)...", $time);
+        $display("[%0t ns] Starting inference...", $time);
         start_time = $time;
 
-        // CRITICAL: Keep start HIGH during ENTIRE data transmission!
         start = 1;
         repeat(3) @(posedge clk);
-        $display("[%0t ns] START asserted, beginning data transmission...", $time);
+        $display("[%0t ns] START asserted, transmitting data...", $time);
 
-        // Present first data
         input_data = test_image[0];
         input_valid = 1;
 
-        // Send input data
         $display("\n[%0t ns] ========== INPUT DATA TRANSMISSION ==========", $time);
         $display("[%0t ns] Transmitting %0d pixels via AXI Stream...", $time, NUM_PIXELS);
 
-        i = 0;  // First pixel already presented
+        i = 0;
 
-        // Wait for first handshake
+        // Wait for handshake
         @(posedge clk);
         while (!input_ready) begin
             @(posedge clk);
@@ -185,49 +179,37 @@ module tb_CNN4HW;
         pixel_count = 1;
         $display("[%0t ns] First pixel accepted, continuing...", $time);
 
-        // Send remaining pixels
         for (i = 1; i < NUM_PIXELS; i = i + 1) begin
-            // Present next data
             input_data = test_image[i];
             input_valid = 1;
 
-            // Wait for ready signal (handshake)
             @(posedge clk);
             while (!input_ready) begin
                 @(posedge clk);
             end
 
-            // Handshake completed
             pixel_count = pixel_count + 1;
 
-            // Progress reporting every 256 pixels (every row)
             if ((i+1) % 256 == 0) begin
                 $display("[%0t ns] Progress: %4d/%4d pixels sent (Row %0d/4 complete)",
                          $time, i+1, NUM_PIXELS, (i+1)/256);
             end
         end
 
-        // End input transmission - deassert valid but KEEP start HIGH
         @(posedge clk);
         input_valid = 0;
         input_data = 0;
-        // IMPORTANT: Keep start HIGH! Dataflow IP needs start asserted until done.
-        $display("[%0t ns] All %0d pixels transmitted (start kept HIGH for dataflow)", $time, pixel_count);
+        $display("[%0t ns] All %0d pixels transmitted", $time, pixel_count);
 
-        // Wait for computation to complete
         $display("\n[%0t ns] ========== COMPUTATION PHASE ==========", $time);
         $display("[%0t ns] Waiting for output or done signal...", $time);
-        $display("  (Expected: ~6162 cycles from start)");
-        $display("  Current status: done=%b idle=%b ready=%b", done, idle, ready);
 
-        // Wait with timeout and periodic status updates
         i = 0;
         while (!output_valid && !done && i < 20000) begin
             @(posedge clk);
             i = i + 1;
-            // Report every 200 cycles (~1us)
             if (i % 200 == 0) begin
-                $display("[%0t ns] Still waiting (cycle %0d)... done=%b idle=%b ready=%b output_valid=%b",
+                $display("[%0t ns] Waiting (cycle %0d)... done=%b idle=%b ready=%b output_valid=%b",
                          $time, i, done, idle, ready, output_valid);
             end
         end
@@ -239,21 +221,17 @@ module tb_CNN4HW;
             $finish;
         end
 
-        // Now deassert start after done or output appears
         start = 0;
-        $display("[%0t ns] Done or output detected, deasserting start", $time);
+        $display("[%0t ns] Output detected", $time);
         end_time = $time;
 
         // Calculate latency
         total_cycles = (end_time - start_time) / CLK_PERIOD;
 
-        // Receive and display output
         $display("\n[%0t ns] ========== OUTPUT RECEIVED ==========", $time);
-        $display("[%0t ns] Output is valid!", $time);
         $display("  Raw Output (hex) : 0x%04h", output_data);
         $display("  Raw Output (dec) : %0d", output_data);
 
-        // Convert ap_fixed<16,2> to float
         if (output_data[15] == 1) begin
             output_float = $itor($signed(output_data)) / 16384.0;
         end else begin
@@ -261,13 +239,11 @@ module tb_CNN4HW;
         end
 
         $display("  Float Value      : %f", output_float);
-
         $display("\n[%0t ns] ========== INFERENCE COMPLETE ==========", $time);
         $display("  Total Cycles     : %0d", total_cycles);
         $display("  Total Time       : %0.2f μs", total_cycles * CLK_PERIOD / 1000.0);
         $display("================================================================================\n");
 
-        // Cleanup
         repeat(10) @(posedge clk);
         $finish;
     end
@@ -293,25 +269,23 @@ module tb_CNN4HW;
             $display("[%0t ns] [MONITOR] Input handshake: data=0x%04h (pixel #%0d)", $time, input_data, pixel_count);
         end
 
-        // Monitor IP control signal changes
         if (done != done_prev) begin
-            $display("[%0t ns] [MONITOR] ap_done changed: %b -> %b", $time, done_prev, done);
+            $display("[%0t ns] [MONITOR] ap_done: %b -> %b", $time, done_prev, done);
             done_prev = done;
         end
         if (idle != idle_prev) begin
-            $display("[%0t ns] [MONITOR] ap_idle changed: %b -> %b", $time, idle_prev, idle);
+            $display("[%0t ns] [MONITOR] ap_idle: %b -> %b", $time, idle_prev, idle);
             idle_prev = idle;
         end
         if (ready != ready_prev) begin
-            $display("[%0t ns] [MONITOR] ap_ready changed: %b -> %b", $time, ready_prev, ready);
+            $display("[%0t ns] [MONITOR] ap_ready: %b -> %b", $time, ready_prev, ready);
             ready_prev = ready;
         end
 
-        // Monitor output valid
         if (output_valid != output_valid_prev) begin
-            $display("[%0t ns] [MONITOR] output_valid changed: %b -> %b", $time, output_valid_prev, output_valid);
+            $display("[%0t ns] [MONITOR] output_valid: %b -> %b", $time, output_valid_prev, output_valid);
             if (output_valid) begin
-                $display("[%0t ns] [MONITOR] OUTPUT READY! data=0x%04h", $time, output_data);
+                $display("[%0t ns] [MONITOR] OUTPUT: data=0x%04h", $time, output_data);
             end
             output_valid_prev = output_valid;
         end
