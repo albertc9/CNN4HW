@@ -32872,3 +32872,5 @@ run 50us
 [45953000 ns] [MONITOR] ap_idle: 0 -> 1
 [45953000 ns] [MONITOR] output_valid: 1 -> 0
 $finish called at time : 45997500 ps : File "/home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_1/new/tb_CNN4HW.v" Line 258
+close_sim
+INFO: [Simtcl 6-16] Simulation closed

@@ -1,20 +1,15 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Streaming Multi-Sample CNN Testbench
-// Performs continuous inference on multiple samples back-to-back
-//////////////////////////////////////////////////////////////////////////////////
 
-module tb_CNN4HW_stream;
+module tb_CNN4HW;
 
     //========================================================================
-    // Parameters - CONFIGURE HERE
+    // Parameters
     //========================================================================
     parameter CLK_PERIOD = 5.0;          // 200MHz clock (5ns period)
     parameter NUM_PIXELS = 1024;         // 4x256 = 1024 pixels
     parameter DATA_WIDTH = 16;           // ap_fixed<16,2>
-    parameter NUM_SAMPLES = 1340;          // Number of samples to test (CHANGE THIS)
-    parameter HEX_DIR = "/home/work1/Work/CNN_iCube_FPGA_b/data/testhex/";
-    parameter CSV_OUTPUT = "/home/work1/Work/CNN_iCube_FPGA_b/out/sim_out/inference_results.csv";
+    parameter SAMPLE_INDEX = 0;          // Testing sample #0
+    parameter DEBUG_HANDSHAKE = 0;       // Set to 1 to print every handshake
 
     //========================================================================
     // Clock and Reset
@@ -50,21 +45,11 @@ module tb_CNN4HW_stream;
     // Test Control Variables
     //========================================================================
     integer i;
-    integer sample_idx;
     integer pixel_count;
     integer start_time;
     integer end_time;
     integer total_cycles;
-    integer csv_file;
     real output_float;
-    reg [1024*8-1:0] hex_filename;  // String for filename
-
-    //========================================================================
-    // Statistics
-    //========================================================================
-    integer total_inferences;
-    integer total_time_ns;
-    real avg_latency_us;
 
     //========================================================================
     // DUT Instantiation
@@ -93,20 +78,19 @@ module tb_CNN4HW_stream;
     end
 
     //========================================================================
-    // Main Test Sequence - Streaming Loop
+    // Main Test Sequence
     //========================================================================
     initial begin
         // Print simulation header
         $display("================================================================================");
-        $display("CNN4HW_TOP Streaming Multi-Sample Simulation");
+        $display("CNN4HW_TOP Post-Synthesis Simulation");
         $display("================================================================================");
         $display("Test Configuration:");
         $display("  Clock Frequency : 200 MHz (Period = %0.1f ns)", CLK_PERIOD);
-        $display("  Number of Samples: %0d", NUM_SAMPLES);
+        $display("  Sample Index    : %0d", SAMPLE_INDEX);
         $display("  Input Pixels    : %0d (4 x 256 x 1)", NUM_PIXELS);
         $display("  Data Format     : ap_fixed<16,2> (16-bit fixed-point)");
-        $display("  Hex File Dir    : %s", HEX_DIR);
-        $display("  CSV Output      : %s", CSV_OUTPUT);
+        $display("  Expected Latency: ~6162 cycles (~30.81 μs)");
         $display("================================================================================");
 
         // Initialize signals
@@ -116,18 +100,24 @@ module tb_CNN4HW_stream;
         input_valid = 0;
         output_ready = 1;  // Always ready to receive output
         pixel_count = 0;
-        total_inferences = 0;
-        total_time_ns = 0;
 
-        // Open CSV file for results
-        csv_file = $fopen(CSV_OUTPUT, "w");
-        if (csv_file == 0) begin
-            $display("[ERROR] Cannot open CSV file: %s", CSV_OUTPUT);
+        // Load test data
+        $display("\n[%0t ns] Loading test data from file...", $time);
+        $readmemh("test_input_sample0.hex", test_image);
+        $display("[%0t ns] Test data loaded", $time);
+        $display("  First pixel : 0x%04h", test_image[0]);
+        $display("  Pixel[1]    : 0x%04h", test_image[1]);
+        $display("  Pixel[10]   : 0x%04h", test_image[10]);
+        $display("  Last pixel  : 0x%04h", test_image[NUM_PIXELS-1]);
+
+        // Check if data loaded correctly
+        if (test_image[0] === 16'hxxxx) begin
+            $display("[ERROR] Test data not loaded! File may not exist.");
+            $display("        Looking for: test_input_sample0.hex");
+            $display("        Current dir: %m");
             $finish;
         end
-        // Write CSV header
-        $fwrite(csv_file, "sample_index,inference_result,latency_ns,timestamp_ns\n");
-        $display("\n[%0t ns] CSV output file opened: %s", $time, CSV_OUTPUT);
+        $display("  Data validation: PASS");
 
         // Reset sequence
         $display("\n[%0t ns] ========== RESET SEQUENCE ==========", $time);
@@ -139,177 +129,186 @@ module tb_CNN4HW_stream;
         repeat(5) @(posedge clk);
 
         $display("[%0t ns] Reset sequence completed", $time);
-        $display("  IP Status: idle=%b ready=%b", idle, ready);
+        $display("[%0t ns] Checking IP status...", $time);
+        $display("  idle  = %b (should be 1)", idle);
+        $display("  ready = %b (will pulse high after inference completes)", ready);
 
         if (!idle) begin
             $display("[ERROR] IP is not idle after reset!");
             $finish;
         end
 
-        //====================================================================
-        // MAIN STREAMING LOOP - Process all samples
-        //====================================================================
-        $display("\n[%0t ns] ========== STARTING STREAMING TEST ==========", $time);
-        $display("Processing %0d samples...\n", NUM_SAMPLES);
+        // Start inference
+        $display("\n[%0t ns] ========== START INFERENCE ==========", $time);
+        $display("[%0t ns] Waiting for IP to be idle...", $time);
+        $display("  Current idle status: %b", idle);
 
-        for (sample_idx = 0; sample_idx < NUM_SAMPLES; sample_idx = sample_idx + 1) begin
+        if (!idle) begin
+            $display("[WARNING] IP not idle, waiting...");
+            wait(idle == 1);
+        end
+        $display("[%0t ns] IP is idle, ready to start", $time);
 
-            //================================================================
-            // Load sample data
-            //================================================================
-            $sformat(hex_filename, "%stest_input_sample%0d.hex", HEX_DIR, sample_idx);
-            $display("[%0t ns] ========== SAMPLE %0d/%0d ==========", $time, sample_idx, NUM_SAMPLES-1);
-            $display("[%0t ns] Loading: %s", $time, hex_filename);
+        @(posedge clk);
 
-            $readmemh(hex_filename, test_image);
+        $display("[%0t ns] Starting inference...", $time);
+        $display("\n[%0t ns] ========== INPUT DATA TRANSMISSION ==========", $time);
+        $display("[%0t ns] Transmitting %0d pixels via AXI Stream...", $time, NUM_PIXELS);
 
-            // Validate data loaded
-            if (test_image[0] === 16'hxxxx) begin
-                $display("[ERROR] Failed to load sample %0d from: %s", sample_idx, hex_filename);
-                $fclose(csv_file);
+        start = 1;
+        start_time = $time;
+        input_data = test_image[0];
+        input_valid = 1;
+
+        $display("[%0t ns] START asserted, first pixel presented", $time);
+
+        i = 0;
+
+        @(posedge clk);
+        while (!input_ready) begin
+            @(posedge clk);
+            if ($time > start_time + 100000) begin
+                $display("[ERROR] input_ready timeout! IP not accepting data after 100us");
+                $display("  idle=%b ready=%b done=%b", idle, ready, done);
                 $finish;
             end
-            $display("[%0t ns] Data loaded (first pixel: 0x%04h)", $time, test_image[0]);
+        end
 
-            //================================================================
-            // Wait for IP to be idle (ready for new inference)
-            //================================================================
-            if (!idle) begin
-                $display("[%0t ns] Waiting for IP to become idle...", $time);
-                wait(idle == 1);
-            end
-            $display("[%0t ns] IP is idle, starting inference", $time);
+        pixel_count = 1;
+        $display("[%0t ns] First pixel accepted, continuing...", $time);
 
-            repeat(3) @(posedge clk);
-
-            //================================================================
-            // Start inference
-            //================================================================
-            start_time = $time;
-            start = 1;
-            repeat(3) @(posedge clk);
-
-            //================================================================
-            // Transmit input data (1024 pixels)
-            //================================================================
-            $display("[%0t ns] Transmitting %0d pixels...", $time, NUM_PIXELS);
-
-            // Send first pixel
-            input_data = test_image[0];
+        for (i = 1; i < NUM_PIXELS; i = i + 1) begin
+            input_data = test_image[i];
             input_valid = 1;
-            pixel_count = 0;
 
-            // Wait for first handshake
             @(posedge clk);
             while (!input_ready) begin
                 @(posedge clk);
-                if ($time > start_time + 100000) begin
-                    $display("[ERROR] input_ready timeout for sample %0d", sample_idx);
-                    $fclose(csv_file);
-                    $finish;
-                end
-            end
-            pixel_count = 1;
-
-            // Send remaining pixels
-            for (i = 1; i < NUM_PIXELS; i = i + 1) begin
-                input_data = test_image[i];
-                input_valid = 1;
-
-                @(posedge clk);
-                while (!input_ready) begin
-                    @(posedge clk);
-                end
-
-                pixel_count = pixel_count + 1;
             end
 
-            // End transmission
+            pixel_count = pixel_count + 1;
+
+            if ((i+1) % 256 == 0) begin
+                $display("[%0t ns] Progress: %4d/%4d pixels sent (Row %0d/4 complete)",
+                         $time, i+1, NUM_PIXELS, (i+1)/256);
+            end
+        end
+
+        @(posedge clk);
+        input_valid = 0;
+        input_data = 0;
+        $display("[%0t ns] All %0d pixels transmitted", $time, pixel_count);
+
+        $display("[%0t ns] Waiting for ready rising edge to deassert start...", $time);
+        @(posedge clk);
+        while (!ready) begin
             @(posedge clk);
-            input_valid = 0;
-            input_data = 0;
-            $display("[%0t ns] All %0d pixels transmitted", $time, pixel_count);
-
-            //================================================================
-            // Wait for computation to complete
-            //================================================================
-            $display("[%0t ns] Waiting for output...", $time);
-
-            i = 0;
-            while (!output_valid && !done && i < 20000) begin
-                @(posedge clk);
-                i = i + 1;
-            end
-
-            if (!output_valid && !done) begin
-                $display("[ERROR] Sample %0d: No output after %0d cycles!", sample_idx, i);
-                $fclose(csv_file);
+            if ($time > start_time + 100000) begin
+                $display("[ERROR] ready signal timeout! Never went high after data transmission");
                 $finish;
             end
+        end
 
-            //================================================================
-            // Deassert start and capture output
-            //================================================================
-            start = 0;
-            end_time = $time;
-            total_cycles = (end_time - start_time) / CLK_PERIOD;
+        start = 0;
+        $display("[%0t ns] ready rising edge detected, start deasserted", $time);
 
-            // Convert output to float
-            if (output_data[15] == 1) begin
-                output_float = $itor($signed(output_data)) / 16384.0;
-            end else begin
-                output_float = $itor(output_data) / 16384.0;
+        $display("\n[%0t ns] ========== COMPUTATION PHASE ==========", $time);
+        $display("[%0t ns] Waiting for output or done signal...", $time);
+
+        i = 0;
+        while (!output_valid && !done && i < 20000) begin
+            @(posedge clk);
+            i = i + 1;
+            if (i % 200 == 0) begin
+                $display("[%0t ns] Waiting (cycle %0d)... done=%b idle=%b ready=%b output_valid=%b",
+                         $time, i, done, idle, ready, output_valid);
             end
+        end
 
-            //================================================================
-            // Log results to CSV and console
-            //================================================================
-            $fwrite(csv_file, "%0d,%0.6f,%0d,%0d\n",
-                    sample_idx, output_float, end_time - start_time, end_time);
+        if (!output_valid && !done) begin
+            $display("\n[ERROR] No output or done signal after %0d cycles!", i);
+            $display("  Time elapsed: %0.2f μs", ($time - start_time) / 1000.0);
+            $display("  IP Status: done=%b idle=%b ready=%b", done, idle, ready);
+            $finish;
+        end
 
-            $display("[%0t ns] OUTPUT: %.6f (0x%04h) | Latency: %0d cycles (%.2f us)",
-                     $time, output_float, output_data, total_cycles,
-                     total_cycles * CLK_PERIOD / 1000.0);
+        $display("[%0t ns] Output detected", $time);
+        end_time = $time;
 
-            // Update statistics
-            total_inferences = total_inferences + 1;
-            total_time_ns = total_time_ns + (end_time - start_time);
+        // Calculate latency
+        total_cycles = (end_time - start_time) / CLK_PERIOD;
 
-            // Small delay before next sample
-            repeat(5) @(posedge clk);
+        $display("\n[%0t ns] ========== OUTPUT RECEIVED ==========", $time);
+        $display("  Raw Output (hex) : 0x%04h", output_data);
+        $display("  Raw Output (dec) : %0d", output_data);
 
-        end // End of sample loop
+        if (output_data[15] == 1) begin
+            output_float = $itor($signed(output_data)) / 16384.0;
+        end else begin
+            output_float = $itor(output_data) / 16384.0;
+        end
 
-        //====================================================================
-        // Final Statistics
-        //====================================================================
-        avg_latency_us = (total_time_ns / total_inferences) / 1000.0;
-
-        $display("\n================================================================================");
-        $display("STREAMING TEST COMPLETE");
-        $display("================================================================================");
-        $display("Total Samples Tested : %0d", total_inferences);
-        $display("Total Simulation Time: %0.2f ms", $time / 1000000.0);
-        $display("Average Latency      : %0.2f us", avg_latency_us);
-        $display("Results saved to     : %s", CSV_OUTPUT);
+        $display("  Float Value      : %f", output_float);
+        $display("\n[%0t ns] ========== INFERENCE COMPLETE ==========", $time);
+        $display("  Total Cycles     : %0d", total_cycles);
+        $display("  Total Time       : %0.2f μs", total_cycles * CLK_PERIOD / 1000.0);
         $display("================================================================================\n");
 
-        // Close CSV file
-        $fclose(csv_file);
-        $display("[%0t ns] CSV file closed", $time);
-
-        // Cleanup
         repeat(10) @(posedge clk);
         $finish;
     end
 
     //========================================================================
-    // Timeout Watchdog (extended for multi-sample testing)
+    // Monitor
+    //========================================================================
+    reg start_prev, done_prev, idle_prev, ready_prev;
+    reg output_valid_prev;
+
+    initial begin
+        start_prev = 0;
+        done_prev = 0;
+        idle_prev = 0;
+        ready_prev = 0;
+        output_valid_prev = 0;
+    end
+
+    always @(posedge clk) begin
+        // Edge detection for start signal
+        if (start && !start_prev) begin
+            $display("[%0t ns] [MONITOR] start: 0 -> 1 (rising edge)", $time);
+        end else if (!start && start_prev) begin
+            $display("[%0t ns] [MONITOR] start: 1 -> 0 (falling edge)", $time);
+        end
+        start_prev <= start;
+
+        if (done != done_prev) begin
+            $display("[%0t ns] [MONITOR] ap_done: %b -> %b", $time, done_prev, done);
+            done_prev = done;
+        end
+        if (idle != idle_prev) begin
+            $display("[%0t ns] [MONITOR] ap_idle: %b -> %b", $time, idle_prev, idle);
+            idle_prev = idle;
+        end
+        if (ready != ready_prev) begin
+            $display("[%0t ns] [MONITOR] ap_ready: %b -> %b", $time, ready_prev, ready);
+            ready_prev = ready;
+        end
+
+        if (output_valid != output_valid_prev) begin
+            $display("[%0t ns] [MONITOR] output_valid: %b -> %b", $time, output_valid_prev, output_valid);
+            if (output_valid) begin
+                $display("[%0t ns] [MONITOR] OUTPUT: data=0x%04h", $time, output_data);
+            end
+            output_valid_prev = output_valid;
+        end
+    end
+
+    //========================================================================
+    // Timeout Watchdog
     //========================================================================
     initial begin
-        #500000000;  // 500ms timeout for streaming test
+        #50000000;  // 50ms timeout
         $display("[ERROR] Simulation timeout!");
-        $fclose(csv_file);
         $finish;
     end
 
