@@ -9,6 +9,7 @@ module tb_CNN4HW;
     parameter NUM_PIXELS = 1024;         // 4x256 = 1024 pixels
     parameter DATA_WIDTH = 16;           // ap_fixed<16,2>
     parameter SAMPLE_INDEX = 0;          // Testing sample #0
+    parameter DEBUG_HANDSHAKE = 0;       // Set to 1 to print every handshake
 
     //========================================================================
     // Clock and Reset
@@ -251,10 +252,11 @@ module tb_CNN4HW;
     //========================================================================
     // Monitor
     //========================================================================
-    reg done_prev, idle_prev, ready_prev;
+    reg start_prev, done_prev, idle_prev, ready_prev;
     reg output_valid_prev;
 
     initial begin
+        start_prev = 0;
         done_prev = 0;
         idle_prev = 0;
         ready_prev = 0;
@@ -262,12 +264,13 @@ module tb_CNN4HW;
     end
 
     always @(posedge clk) begin
-        if (start) begin
-            $display("[%0t ns] [MONITOR] start asserted", $time);
+        // Edge detection for start signal
+        if (start && !start_prev) begin
+            $display("[%0t ns] [MONITOR] start: 0 -> 1 (rising edge)", $time);
+        end else if (!start && start_prev) begin
+            $display("[%0t ns] [MONITOR] start: 1 -> 0 (falling edge)", $time);
         end
-        if (input_valid && input_ready) begin
-            $display("[%0t ns] [MONITOR] Input handshake: data=0x%04h (pixel #%0d)", $time, input_data, pixel_count);
-        end
+        start_prev <= start;
 
         if (done != done_prev) begin
             $display("[%0t ns] [MONITOR] ap_done: %b -> %b", $time, done_prev, done);
