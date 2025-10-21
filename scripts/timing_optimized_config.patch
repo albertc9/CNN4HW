@@ -1,0 +1,66 @@
+--- convert_cnn_hls4ml.py.orig	2025-10-19 00:00:00.000000000 +0000
++++ convert_cnn_hls4ml.py	2025-10-19 12:00:00.000000000 +0000
+@@ -120,25 +120,28 @@
+ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="io_stream"):
+     """
+-    200 MHz target:
+-    - ClockPeriod = 5 ns
+-    - Strategy = 'Latency'
+-    - ReuseFactor = 8 (globally & per-layer)
+-    - Larger Activation table_size to improve sigmoid LUT accuracy
+-    - Only bump the final Dense 'result' precision to reduce output saturation error
++    Timing-optimized configuration for 166 MHz target (was 200 MHz):
++    - ClockPeriod = 6 ns (conservative target)
++    - Increased ReuseFactor for conv2d_1 to reduce parallelism
++    - Resource strategy for critical paths
++    - DSP pipeline hints for better timing
+     """
+     cfg = {
+         'Model': {
+             'Precision': default_precision,
+             'ReuseFactor': int(reuse),
+-            'Strategy': 'Latency',       # Prefer shortest critical path for high Fmax
++            'Strategy': 'Resource',      # Changed: prioritize timing over latency
+             'BramFactor': 8000,
+             'PipelineStyle': 'dataflow',
+-            'ClockPeriod': 5,            # 5 ns -> 200 MHz
++            'ClockPeriod': 6,            # Changed: 6 ns -> 166 MHz
+             'IOType': io_type
+         },
+         'LayerName': {},
+         'LayerType': {
+@@ -166,13 +169,21 @@
+                 prec['accum'] = 'ap_fixed<20,4>'  # MAC accumulator [-512,512)
+                 prec['result'] = 'ap_fixed<12,2>' # Pre-ReLU result
+
+-                # Per-layer ReuseFactor tuning for Conv2D
+-                # conv2d (first layer): RF=4 for 50% latency reduction (DSP: 100→200)
+-                # conv2d_1 (second layer): RF=8 to save resources
+-                layer_reuse = 4 if name == "conv2d" else int(reuse)
++                # Timing-optimized ReuseFactor and Strategy
++                if name == "conv2d":
++                    # First layer: moderate parallelism
++                    layer_reuse = 8          # Changed from 4
++                    layer_strategy = 'Latency'
++                elif name == "conv2d_1":
++                    # Second layer: CRITICAL - reduce parallelism significantly
++                    layer_reuse = 16         # Changed from 8 (KEY TIMING FIX!)
++                    layer_strategy = 'Resource'  # Prioritize timing over latency
++                else:
++                    layer_reuse = int(reuse)
++                    layer_strategy = 'Latency'
+
+                 cfg['LayerName'][name] = {
+                     'Precision': prec,
+                     'ReuseFactor': layer_reuse,
+-                    'Strategy': 'Latency',
++                    'Strategy': layer_strategy,
+                 }
+@@ -205,7 +216,7 @@
+                         'bias': default_precision
+                     },
+                     'ReuseFactor': int(reuse),
+-                    'Strategy': 'Latency',
++                    'Strategy': 'Resource',  # Changed from 'Latency'
+                 }
+

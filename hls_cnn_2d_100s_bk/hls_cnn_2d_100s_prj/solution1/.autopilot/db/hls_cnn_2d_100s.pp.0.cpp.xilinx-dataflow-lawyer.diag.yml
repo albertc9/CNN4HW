@@ -1,0 +1,28 @@
+---
+MainSourceFile:  /home/albertu/Works/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/.autopilot/db/hls_cnn_2d_100s.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-10] Either use an argument of the function or declare the variable inside the dataflow loop body'
+    FileOffset:      '37:68'
+    FilePath:        firmware/hls_cnn_2d_100s.cpp
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-10] Either use an argument of the function or declare the variable inside the dataflow loop body'
+    FileOffset:      '37:72'
+    FilePath:        firmware/hls_cnn_2d_100s.cpp
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-10] Either use an argument of the function or declare the variable inside the dataflow loop body'
+    FileOffset:      '45:72'
+    FilePath:        firmware/hls_cnn_2d_100s.cpp
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-10] Either use an argument of the function or declare the variable inside the dataflow loop body'
+    FileOffset:      '45:76'
+    FilePath:        firmware/hls_cnn_2d_100s.cpp
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-10] Either use an argument of the function or declare the variable inside the dataflow loop body'
+    FileOffset:      '54:67'
+    FilePath:        firmware/hls_cnn_2d_100s.cpp
+  - DiagnosticName:  clang-diagnostic-warning
+    Message:         '[xlx-df-check-10] Either use an argument of the function or declare the variable inside the dataflow loop body'
+    FileOffset:      '54:71'
+    FilePath:        firmware/hls_cnn_2d_100s.cpp
+...

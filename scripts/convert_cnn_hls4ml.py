@@ -46,7 +46,13 @@ CONFIG = {
     # Quantization / scheduling
     # ap_fixed<18,8>: range [-128,128), precision ~0.001, safer for weights up to 0.66
     "precision": "ap_fixed<16,2>",
-    "reuse": 8,                  
+    "reuse": 8,                  # Default/global ReuseFactor
+
+    # Per-layer ReuseFactor (overrides global 'reuse' for specific layers)
+    "reuse_conv2d": 4,           # First Conv2D layer ReuseFactor
+    "reuse_conv2d_1": 16,         # Second Conv2D layer ReuseFactor (CRITICAL for timing)
+    "reuse_dense": 32,           # Dense layer ReuseFactor
+
     "strip_dropout": True,       # Dropout stripped for HLS
 
     # Build / test
@@ -117,15 +123,32 @@ def load_keras_model(path, strip_dropout=True):
     return keras.Model(inputs=inputs, outputs=x, name="converted_model")
 
 
-def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="io_stream"):
+def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="io_stream",
+                    reuse_conv2d=None, reuse_conv2d_1=None, reuse_dense=None):
     """
-    200 MHz target:
-    - ClockPeriod = 5 ns
+    HLS configuration with per-layer ReuseFactor control.
+
+    Args:
+        model: Keras model
+        default_precision: Default precision for all layers
+        reuse: Global/default ReuseFactor
+        io_type: I/O type (io_stream or io_parallel)
+        reuse_conv2d: ReuseFactor for first Conv2D layer (None = use global 'reuse')
+        reuse_conv2d_1: ReuseFactor for second Conv2D layer (None = use global 'reuse')
+        reuse_dense: ReuseFactor for Dense layer (None = use 32)
+
+    Target: 200 MHz (ClockPeriod = 5 ns)
     - Strategy = 'Latency'
-    - ReuseFactor = 8 (globally & per-layer)
+    - Per-layer ReuseFactor tuning for timing optimization
     - Larger Activation table_size to improve sigmoid LUT accuracy
-    - Only bump the final Dense 'result' precision to reduce output saturation error
     """
+    # Set defaults for per-layer reuse factors if not provided
+    if reuse_conv2d is None:
+        reuse_conv2d = reuse
+    if reuse_conv2d_1 is None:
+        reuse_conv2d_1 = reuse
+    if reuse_dense is None:
+        reuse_dense = 32
     cfg = {
         'Model': {
             'Precision': default_precision,
@@ -167,9 +190,14 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
                 prec['result'] = 'ap_fixed<12,2>' # Pre-ReLU result
 
                 # Per-layer ReuseFactor tuning for Conv2D
-                # conv2d (first layer): RF=4 for 50% latency reduction (DSP: 100→200)
-                # conv2d_1 (second layer): RF=8 to save resources
-                layer_reuse = 4 if name == "conv2d" else int(reuse)
+                # Use the explicit per-layer parameters
+                if name == "conv2d":
+                    layer_reuse = reuse_conv2d
+                elif name == "conv2d_1":
+                    layer_reuse = reuse_conv2d_1
+                else:
+                    # Fallback for any unexpected conv layers
+                    layer_reuse = int(reuse)
 
                 cfg['LayerName'][name] = {
                     'Precision': prec,
@@ -187,11 +215,12 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
                     'accum': 'ap_fixed<17,6>'     # Extra headroom for MAC
                 }
 
-                # Dense layer: RF=32 to reduce resource usage (44% LUT → ~7% LUT)
+                # Dense layer: Use the explicit reuse_dense parameter
+                # Higher RF reduces resource usage (44% LUT → ~7% LUT)
                 # Latency impact: +750 cycles (~3.8us), but total latency dominated by conv2d
                 cfg['LayerName'][name] = {
                     'Precision': prec,
-                    'ReuseFactor': 32,
+                    'ReuseFactor': reuse_dense,
                     'Strategy': 'Resource',  # Optimize for area
                 }
 
@@ -527,7 +556,10 @@ def main(C):
         hls_cfg = make_hls_config(model,
                                   default_precision=C["precision"],
                                   reuse=C["reuse"],
-                                  io_type=C["io"])
+                                  io_type=C["io"],
+                                  reuse_conv2d=C.get("reuse_conv2d", C["reuse"]),
+                                  reuse_conv2d_1=C.get("reuse_conv2d_1", C["reuse"]),
+                                  reuse_dense=C.get("reuse_dense", 32))
         print("\n=== HLS Config (compact) ===")
         print(json.dumps({
             'Model': hls_cfg['Model'],

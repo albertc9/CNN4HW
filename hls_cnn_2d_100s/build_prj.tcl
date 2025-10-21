@@ -9,7 +9,7 @@ array set opt {
     validation 1
     export     1
     vsynth     1
-    fifo_opt   1
+    fifo_opt   0
 }
 
 set tcldir [file dirname [info script]]

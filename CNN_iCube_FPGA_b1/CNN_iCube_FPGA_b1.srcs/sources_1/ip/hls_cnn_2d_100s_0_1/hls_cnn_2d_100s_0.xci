@@ -11,7 +11,7 @@
         "clk_period": [ { "value": "5", "enabled": false, "usage": "all" } ],
         "machine": [ { "value": "64", "enabled": false, "usage": "all" } ],
         "combinational": [ { "value": "0", "enabled": false, "usage": "all" } ],
-        "latency": [ { "value": "6162", "enabled": false, "usage": "all" } ],
+        "latency": [ { "value": "6170", "enabled": false, "usage": "all" } ],
         "II": [ { "value": "x", "enabled": false, "usage": "all" } ]
       },
       "project_parameters": {

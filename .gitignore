@@ -2,3 +2,8 @@ hls_cnn_2d_100s/hls_cnn_2d_100s_prj/
 CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.cache
 CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.hw
 CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.ip_user_files
+CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.sim
+CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.gen
+CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.runs
+hls_cnn_2d_100s.tar.gz
+hls_cdd_2d_100s_bk/

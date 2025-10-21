@@ -3,12 +3,27 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Oct 15 23:54:00 2025
-# Process ID: 991024
-# Current directory: /home/albertu/Works/hls_cnn_2d_100s
-# Command line: vivado -mode batch -source vivado_synth.tcl
-# Log file: /home/albertu/Works/hls_cnn_2d_100s/vivado.log
-# Journal file: /home/albertu/Works/hls_cnn_2d_100s/vivado.jou
-# Running On: dell-OptiPlex-7050, OS: Linux, CPU Frequency: 900.043 MHz, CPU Physical cores: 4, Host memory: 8184 MB
+# Start of session at: Tue Oct 21 15:09:51 2025
+# Process ID: 826738
+# Current directory: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s
+# Command line: vivado
+# Log file: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/vivado.log
+# Journal file: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/vivado.jou
+# Running On: dhcp-172-31-205-022.mobile.uci.edu, OS: Linux, CPU Frequency: 1307.012 MHz, CPU Physical cores: 24, Host memory: 16427 MB
 #-----------------------------------------------------------
-source vivado_synth.tcl
+start_gui
+open_project /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source tb_CNN4HW.tcl
+run 39us
+run 10us
+run 10us
+close_sim
+launch_simulation
+source tb_CNN4HW.tcl
+run 50us
+close_sim
+launch_simulation
+source tb_CNN4HW.tcl
+run 50us
