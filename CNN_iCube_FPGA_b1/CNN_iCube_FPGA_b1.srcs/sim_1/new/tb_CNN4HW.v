@@ -149,24 +149,21 @@ module tb_CNN4HW;
         end
         $display("[%0t ns] IP is idle, ready to start", $time);
 
-        repeat(3) @(posedge clk);
+        @(posedge clk);
 
         $display("[%0t ns] Starting inference...", $time);
-        start_time = $time;
-
-        start = 1;
-        repeat(3) @(posedge clk);
-        $display("[%0t ns] START asserted, transmitting data...", $time);
-
-        input_data = test_image[0];
-        input_valid = 1;
-
         $display("\n[%0t ns] ========== INPUT DATA TRANSMISSION ==========", $time);
         $display("[%0t ns] Transmitting %0d pixels via AXI Stream...", $time, NUM_PIXELS);
 
+        start = 1;
+        start_time = $time;
+        input_data = test_image[0];
+        input_valid = 1;
+
+        $display("[%0t ns] START asserted, first pixel presented", $time);
+
         i = 0;
 
-        // Wait for handshake
         @(posedge clk);
         while (!input_ready) begin
             @(posedge clk);
@@ -202,6 +199,19 @@ module tb_CNN4HW;
         input_data = 0;
         $display("[%0t ns] All %0d pixels transmitted", $time, pixel_count);
 
+        $display("[%0t ns] Waiting for ready rising edge to deassert start...", $time);
+        @(posedge clk);
+        while (!ready) begin
+            @(posedge clk);
+            if ($time > start_time + 100000) begin
+                $display("[ERROR] ready signal timeout! Never went high after data transmission");
+                $finish;
+            end
+        end
+
+        start = 0;
+        $display("[%0t ns] ready rising edge detected, start deasserted", $time);
+
         $display("\n[%0t ns] ========== COMPUTATION PHASE ==========", $time);
         $display("[%0t ns] Waiting for output or done signal...", $time);
 
@@ -222,7 +232,6 @@ module tb_CNN4HW;
             $finish;
         end
 
-        start = 0;
         $display("[%0t ns] Output detected", $time);
         end_time = $time;
 
