@@ -7,3 +7,47 @@ CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.gen
 CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.runs
 hls_cnn_2d_100s.tar.gz
 hls_cdd_2d_100s_bk/
+# Vivado / xsim / runs / cache / gen / ip_user_files
+*.cache/
+*.runs/
+*.sim/
+*.gen/
+*.hw/
+*.sdk/
+*.ip_user_files/
+xsim.dir/
+*.jou
+*.log
+*.str
+*.pb
+*.rpt
+*.xml
+*.html
+*.xpr
+*.xsa
+
+# 大型仿真/实现产物
+*.wdb
+*.wcfg
+*.vcd
+*.wlf
+*.dcp
+*.edf
+*.edn
+*.rtd
+
+# HLS / 项目产物
+myproject_prj/
+solution*/
+*.dat
+*.npy
+*.pkl
+*.mem
+
+# 打包文件
+*.zip
+*.tar.gz
+
+# 生成的 netlist（仿真）
+**/sim_netlist.v
+**/sim_netlist.vhdl
