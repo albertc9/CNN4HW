@@ -51,7 +51,7 @@ CONFIG = {
     # Per-layer ReuseFactor (overrides global 'reuse' for specific layers)
     "reuse_conv2d": 4,           # First Conv2D layer ReuseFactor
     "reuse_conv2d_1": 16,         # Second Conv2D layer ReuseFactor (CRITICAL for timing)
-    "reuse_dense": 32,           # Dense layer ReuseFactor
+    "reuse_dense": 34,           # Dense layer ReuseFactor
 
     "strip_dropout": True,       # Dropout stripped for HLS
 
