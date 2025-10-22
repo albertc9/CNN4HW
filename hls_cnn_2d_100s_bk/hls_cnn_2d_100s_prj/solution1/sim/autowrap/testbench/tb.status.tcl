@@ -1,1 +1,0 @@
-set ::AESL_AUTOSIM::gTopFileName /home/albertu/Works/hls_cnn_2d_100s/hls_cnn_2d_100s_prj/solution1/./sim/autowrap/testbench/hls_cnn_2d_100s.cpp_pre.cpp.tb.cpp

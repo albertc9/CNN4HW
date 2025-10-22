@@ -1,0 +1,63 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Oct 18 22:46:38 2025
+# Process ID: 132061
+# Current directory: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s
+# Command line: vivado
+# Log file: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/vivado.log
+# Journal file: /home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s/vivado.jou
+# Running On: fedora, OS: Linux, CPU Frequency: 800.312 MHz, CPU Physical cores: 24, Host memory: 16427 MB
+#-----------------------------------------------------------
+start_gui
+open_project /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.xpr
+update_compile_order -fileset sources_1
+create_fileset -constrset constrs_2
+file mkdir /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2
+file mkdir /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/01_clocks.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/01_clocks.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/02_io_delays.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/02_io_delays.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/10_io_standards.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/10_io_standards.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/20_pins.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/20_pins.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/03_clock_groups.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/03_clock_groups.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/04_uncertainty.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/04_uncertainty.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/05_multicycle_falsepaths.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/05_multicycle_falsepaths.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/21_diff_pairs.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/21_diff_pairs.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/22_interface_adc.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/22_interface_adc.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/23_interface_spi.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/23_interface_spi.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/24_interface_axi.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/24_interface_axi.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/30_timing_extras.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/30_timing_extras.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/40_debug_ila.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/40_debug_ila.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/50_power_thermal.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/50_power_thermal.xdc
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/99_local_override.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/99_local_override.xdc
+add_files -fileset constrs_2 -norecurse {/home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/01_clocks.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/02_io_delays.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/10_io_standards.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/20_pins.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/03_clock_groups.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/04_uncertainty.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/05_multicycle_falsepaths.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/21_diff_pairs.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/22_interface_adc.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/23_interface_spi.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/24_interface_axi.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/30_timing_extras.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/40_debug_ila.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/50_power_thermal.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/99_local_override.xdc}
+import_files -fileset constrs_2 {/home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/01_clocks.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/02_io_delays.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/10_io_standards.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/20_pins.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/03_clock_groups.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/04_uncertainty.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/05_multicycle_falsepaths.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/21_diff_pairs.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/22_interface_adc.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/23_interface_spi.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/24_interface_axi.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/30_timing_extras.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/40_debug_ila.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/50_power_thermal.xdc /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/99_local_override.xdc}
+set_property constrset constrs_2 [get_runs synth_1]
+set_property constrset constrs_2 [get_runs impl_1]
+close [ open /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/00_top_constraints.xdc w ]
+add_files -fileset constrs_2 /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/constrs_2/new/00_top_constraints.xdc
+reset_run synth_1
+launch_runs synth_1 -jobs 30
+wait_on_run synth_1
+launch_runs impl_1 -jobs 30
+wait_on_run impl_1
+open_run synth_1 -name synth_1
+close_design
+open_run impl_1

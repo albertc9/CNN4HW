@@ -1,0 +1,51 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'hls_cnn_2d_100s'" level="0">
+<item name = "Date">Sun Oct 19 15:31:44 2025
+</item>
+<item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
+<item name = "Project">hls_cnn_2d_100s_prj</item>
+<item name = "Solution">solution1 (Vivado IP Flow Target)</item>
+<item name = "Product family">kintexuplus</item>
+<item name = "Target device">xcku5p-ffvb676-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 4.288 ns, 0.62 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">6170, 6170, 30.850 us, 30.850 us, 6148, 6148, dataflow</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_s_fu_582">conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_12_2_5_3_0_20u_config2_s, 6147, 6147, 30.735 us, 30.735 us, 6147, 6147, no</column>
+<column name="grp_relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_s_fu_683">relu_array_ap_fixed_20u_array_ap_fixed_16_2_5_3_0_20u_relu_config3_s, 250, 250, 1.250 us, 1.250 us, 250, 250, no</column>
+<column name="grp_conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_12_2_5_3_0_10u_config4_s_fu_689">conv_2d_cl_array_ap_fixed_20u_array_ap_fixed_12_2_5_3_0_10u_config4_s, 4449, 4449, 22.245 us, 22.245 us, 4449, 4449, no</column>
+<column name="grp_relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_s_fu_1099">relu_array_ap_fixed_10u_array_ap_fixed_16_2_5_3_0_10u_relu_config5_s, 241, 241, 1.205 us, 1.205 us, 241, 241, no</column>
+<column name="grp_dense_array_ap_fixed_10u_array_ap_fixed_10_6_5_3_0_1u_config7_s_fu_1105">dense_array_ap_fixed_10u_array_ap_fixed_10_6_5_3_0_1u_config7_s, 280, 280, 1.400 us, 1.400 us, 280, 280, no</column>
+<column name="grp_sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s_fu_1113">sigmoid_array_array_ap_fixed_16_2_5_3_0_1u_sigmoid_config8_s, 3, 3, 15.000 ns, 15.000 ns, 3, 3, no</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>
