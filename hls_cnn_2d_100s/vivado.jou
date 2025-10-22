@@ -44,3 +44,71 @@ launch_simulation
 source tb_CNN4HW.tcl
 run 50us
 close_sim
+set_property source_mgmt_mode DisplayOnly [current_project]
+current_fileset -simset [ get_filesets sim_2 ]
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+run 600us
+close_sim
+close_sim
+close_sim -force
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+run 600us
+close_sim
+current_fileset -simset [ get_filesets sim_1 ]
+launch_simulation
+source tb_CNN4HW.tcl
+run 60us
+close+sim
+close_sim
+current_fileset -simset [ get_filesets sim_2 ]
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+run 60us
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+run 60us
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+run 80us
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW_stream.tcl
+run 100us
+close_sim
+update_files -from_files /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_2/imports/new/tb_CNN4HW_stream.v -to_files /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_2/imports/new/tb_CNN4HW_stream.v -filesets [get_filesets *]
+current_fileset -simset [ get_filesets sim_1 ]
+delete_fileset [ get_filesets sim_2 ]
+create_fileset -simset sim_2
+set_property SOURCE_SET sources_1 [get_filesets sim_2]
+add_files -fileset sim_2 -norecurse -scan_for_includes /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_2/imports/new/tb_CNN4HW_stream.v
+import_files -fileset sim_2 -norecurse /home/work1/Work/CNN_iCube_FPGA_b/CNN_iCube_FPGA_b1/CNN_iCube_FPGA_b1.srcs/sim_2/imports/new/tb_CNN4HW_stream.v
+close_sim
+launch_simulation
+source tb_CNN4HW.tcl
+close_sim
+current_fileset -simset [ get_filesets sim_2 ]
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top tb_CNN4HW [get_filesets sim_2]
+set_property top_lib xil_defaultlib [get_filesets sim_2]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode DisplayOnly [current_project]
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW.tcl
+run 100ns
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW.tcl
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW.tcl
+close_sim
+launch_simulation -simset [get_filesets sim_2 ]
+source tb_CNN4HW.tcl
+run 80us
+run 50us
+run 50us
