@@ -36,12 +36,12 @@ CONFIG = {
     "labels": None,  # e.g. "/home/.../labels.npy" with shape (N,) or (N,1)
 
     # HLS project
-    "outdir": "hls_cnn_2d_100s",
+    "outdir": "hls_cnn_2d_100s_parallel",  # New output directory for io_parallel version
 
     # HLS tool/flow
     "part": "xcku5p-ffvb676-2-e",
     "backend": "Vitis",          # "Vivado" or "Vitis"
-    "io": "io_stream",           # "io_stream" or "io_parallel"
+    "io": "io_parallel",         # "io_stream" or "io_parallel" ← CHANGED to io_parallel
 
     # Quantization / scheduling
     # ap_fixed<18,8>: range [-128,128), precision ~0.001, safer for weights up to 0.66
@@ -157,7 +157,10 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
             'BramFactor': 8000,
             'PipelineStyle': 'dataflow',
             'ClockPeriod': 5,            # 5 ns -> 200 MHz
-            'IOType': io_type
+            'IOType': io_type,
+            # For io_parallel: use ARRAY_PARTITION instead of ARRAY_RESHAPE for input
+            # This enables full parallel access to all input elements in a single cycle
+            'InputArrayPartition': 'complete' if io_type == 'io_parallel' else None,
         },
         'LayerName': {},
         'LayerType': {
