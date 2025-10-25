@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Remote Test",
+      "type": "shell",
+      "command": "ssh labbox 'cd ~/Works/CNN4HW && echo ✅ Remote connected: $(hostname) && ls -1'",
+      "problemMatcher": []
+    }
+  ]
+}
+{
+  "label": "Rsync to labbox",
+  "type": "shell",
+  "command": "rsync -az --delete --exclude='.git' --exclude='.vscode' ${workspaceFolder}/ labbox:/home/albertu/Works/CNN4HW/",
+  "group": {
+    "kind": "build",
+    "isDefault": true
+  }
+}
+

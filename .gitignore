@@ -51,3 +51,9 @@ solution*/
 # 生成的 netlist（仿真）
 **/sim_netlist.v
 **/sim_netlist.vhdl
+
+
+COMPARISON_AND_RECOMMENDATION.md
+DATAFLOW_TIMING_EXPLANATION.md
+DETAILED_IO_STREAM_ANALYSIS.md
+FINAL_ANALYSIS_AND_SOLUTION.md
