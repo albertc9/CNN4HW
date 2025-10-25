@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="hls_cnn_2d_100s_parallel.cpp" path="/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s_parallel/firmware/hls_cnn_2d_100s_parallel.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="tb_data" path="/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s_parallel/tb_data"/>
+    <originFiles name="weights" path="/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s_parallel/firmware/weights"/>
+    <originFiles name="hls_cnn_2d_100s_parallel_test.cpp" path="/home/work1/Work/CNN_iCube_FPGA_b/hls_cnn_2d_100s_parallel/hls_cnn_2d_100s_parallel_test.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

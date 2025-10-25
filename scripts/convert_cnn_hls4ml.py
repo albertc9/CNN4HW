@@ -36,21 +36,21 @@ CONFIG = {
     "labels": None,  # e.g. "/home/.../labels.npy" with shape (N,) or (N,1)
 
     # HLS project
-    "outdir": "hls_cnn_2d_100s_parallel",  # New output directory for io_parallel version
+    "outdir": "hls_cnn_2d_100s",
 
     # HLS tool/flow
     "part": "xcku5p-ffvb676-2-e",
     "backend": "Vitis",          # "Vivado" or "Vitis"
-    "io": "io_parallel",         # "io_stream" or "io_parallel" ← CHANGED to io_parallel
+    "io": "io_stream",           # "io_stream" for internal layers (will add AXI wrapper manually)
 
     # Quantization / scheduling
-    # ap_fixed<18,8>: range [-128,128), precision ~0.001, safer for weights up to 0.66
+    # ap_fixed<16,2>: range [-2,2), precision ~0.0001, good for normalized data
     "precision": "ap_fixed<16,2>",
-    "reuse": 8,                  # Default/global ReuseFactor
+    "reuse": 16,                 # Default/global ReuseFactor (increased for lower resources)
 
     # Per-layer ReuseFactor (overrides global 'reuse' for specific layers)
-    "reuse_conv2d": 4,           # First Conv2D layer ReuseFactor
-    "reuse_conv2d_1": 16,         # Second Conv2D layer ReuseFactor (CRITICAL for timing)
+    "reuse_conv2d": 8,           # First Conv2D layer ReuseFactor (increased from 4)
+    "reuse_conv2d_1": 16,        # Second Conv2D layer ReuseFactor (CRITICAL for timing)
     "reuse_dense": 34,           # Dense layer ReuseFactor
 
     "strip_dropout": True,       # Dropout stripped for HLS
@@ -138,7 +138,7 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
         reuse_dense: ReuseFactor for Dense layer (None = use 32)
 
     Target: 200 MHz (ClockPeriod = 5 ns)
-    - Strategy = 'Latency'
+    - Strategy = 'Resource'
     - Per-layer ReuseFactor tuning for timing optimization
     - Larger Activation table_size to improve sigmoid LUT accuracy
     """
@@ -153,7 +153,7 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
         'Model': {
             'Precision': default_precision,
             'ReuseFactor': int(reuse),
-            'Strategy': 'Latency',       # Prefer shortest critical path for high Fmax
+            'Strategy': 'Resource',
             'BramFactor': 8000,
             'PipelineStyle': 'dataflow',
             'ClockPeriod': 5,            # 5 ns -> 200 MHz
@@ -196,16 +196,23 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
                 # Use the explicit per-layer parameters
                 if name == "conv2d":
                     layer_reuse = reuse_conv2d
+                    # conv2d outputs 4940 elements (1×247×20) - too large for complete partition
+                    # Must use Resource to avoid FF overflow
+                    layer_strategy = 'Resource'
                 elif name == "conv2d_1":
                     layer_reuse = reuse_conv2d_1
+                    # conv2d_1 outputs 2380 elements (1×238×10) - can use Latency
+                    # This enables complete partition for better performance
+                    layer_strategy = 'Latency'
                 else:
                     # Fallback for any unexpected conv layers
                     layer_reuse = int(reuse)
+                    layer_strategy = 'Resource'
 
                 cfg['LayerName'][name] = {
                     'Precision': prec,
                     'ReuseFactor': layer_reuse,
-                    'Strategy': 'Latency',
+                    'Strategy': layer_strategy,
                 }
 
             # Optimize final Dense output precision
@@ -236,7 +243,7 @@ def make_hls_config(model, default_precision="ap_fixed<2,2>", reuse=8, io_type="
                         'bias': default_precision
                     },
                     'ReuseFactor': int(reuse),
-                    'Strategy': 'Latency',
+                    'Strategy': 'Resource',
                 }
 
         elif cls in ("Activation", "ReLU", "LeakyReLU", "PReLU"):

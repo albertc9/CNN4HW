@@ -29,7 +29,7 @@ struct config2_mult : nnet::dense_config {
     static const unsigned n_in = 40;
     static const unsigned n_out = 20;
     static const unsigned reuse_factor = 4;
-    static const unsigned strategy = nnet::latency;
+    static const unsigned strategy = nnet::resource;
     static const unsigned n_zeros = 0;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     typedef conv2d_accum_t accum_t;
@@ -60,7 +60,7 @@ struct config2 : nnet::conv2d_config {
     static const unsigned multiplier_limit =
         DIV_ROUNDUP(kernel_size * n_chan * n_filt, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
-    static const unsigned strategy = nnet::latency;
+    static const unsigned strategy = nnet::resource;
     static const nnet::conv_implementation implementation = nnet::conv_implementation::linebuffer;
     static const unsigned min_height = 4;
     static const unsigned min_width = 256;
